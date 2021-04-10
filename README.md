@@ -1,7 +1,5 @@
 ## Seapipe - KelpFramework Homepage
 
----
-
 > Developed by [Davis_Software](https://github.com/Software-City) &copy; 2020-2021
 
 Join the [**DISCORD**](https://discord.gg/KVtjCMwk4x) for exclusive updates, feature voting, etc.
@@ -15,7 +13,7 @@ Additionally you can also take a look at [this](https://github.com/KelpFramework
 
 ### What does this website do?
 This website acts as a Homepage for Kelp. It contains some examples and explanations while also providing a platform
-for distributing [Kelp Plugins]() (link pending) and [Kelp Modules]() (link pending) also called Extensions.
+for distributing [Kelp Plugins]() (link pending) and [Kelp Extensions]() (link pending).
 
 **Visit it [here]() (link pending)**
 
