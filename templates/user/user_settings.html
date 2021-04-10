@@ -1,0 +1,84 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/user/user_settings.css">
+{% endblock %}
+
+{% block body %}
+<div class="pt-5 container">
+    <div id="accordion">
+
+        <div class="card">
+            <div class="card-header card-link cursor-pointer" data-toggle="collapse" data-target="#collapse_one">Account</div>
+            <div class="collapse show" id="collapse_one" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="bg-dark p-3 mb-3">
+                        <div class="row">
+                            <img class="col user-img-change" data-user="{{ user.get_username() }}" src="{{ user.get_avatar() }}" alt="{{ user.get_username() }}">
+                            <div class="col mt-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span>Username: <b>{{ user.get_username() }}</b></span> <br>
+                                        <span>E-Mail: <b>{{ user.get_email() }}</b></span> <br>
+                                        <span>Member since: <b>{{ user.get_created().strftime("%d.%m.%Y %H:%M") }}</b></span> <br>
+                                        <span>Description:</span>
+                                        <div class="border border-info p-3 mt-2">
+                                            {{ user.get_description(use_markdown=True)|safe }}
+                                        </div>
+                                        <div class="description-raw" hidden>{{ user.get_description() }}</div>
+                                    </div>
+                                    <div class="col button-group mt-4">
+                                        <span>Options:</span> <br>
+                                        <button class="btn btn-outline-primary m-1" onclick="edit_description()">Edit Description</button>
+                                        <button class="btn btn-outline-warning m-1" onclick="change_email('{{ user.get_email() }}')">Change E-Mail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header card-link cursor-pointer" data-toggle="collapse" data-target="#collapse_two">Security</div>
+            <div class="collapse" id="collapse_two" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="bg-dark p-3 mb-3">
+                        <h4>Password</h4>
+                        <div class="mt-3">
+                            <span>Password Info</span>
+                            <ul>
+                                <li>Hash Typ: SHA-512</li>
+                                <li>Hash Integrity: {{ "✔️" if True else "❌" }}</li>
+                            </ul>
+                            <hr>
+                            <button class="btn btn-warning" onclick="change_password()">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header card-link cursor-pointer text-danger" data-toggle="collapse" data-target="#collapse_three">Delete Files or Account</div>
+            <div class="collapse" id="collapse_three" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="p-3 mb-3 m-2 border border-danger">
+                        <h4 class="text-danger">Danger Zone</h4>
+                        <div class="mt-3 d-flex justify-content-center">
+                            <button class="btn btn-outline-danger m-1" onclick="delete_data('plugins')">Delete all Plugins</button>
+                            <button class="btn btn-outline-danger m-1" onclick="delete_data('extensions')">Delete all Extensions</button>
+                            <button class="btn btn-outline-danger m-1" onclick="delete_data('everything')">Delete everything</button>
+                            <button class="btn btn-danger m-1" onclick="delete_data('account')">Delete account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/static/js/user/user_settings.js"></script>
+{% endblock %}

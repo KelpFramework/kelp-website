@@ -1,0 +1,129 @@
+{% extends "base/acp_base.html" %}
+
+{% block head %}
+    <link rel='stylesheet' href="/static/css/acp/acp_extensions.css">
+{% endblock %}
+
+{% block body %}
+    <div class="d-inline-flex">
+        <div id="module-nav">
+            <h5 class="p-3">Kelp Extensions</h5>
+            <div>
+                <div class="mb-2">
+                    <input type="search" class="form-control bg-dark text-light" placeholder="Search..." id="user-search">
+                </div>
+                <div class="fixed-bottom btnbottom">
+                    <button class="btn-nostyle text-info" onclick="new_extension()">New Extension</button>
+                </div>
+            </div>
+            <ul id="module-list" class="nav">
+                <li><div class="spinner-border"></div></li>
+            </ul>
+        </div>
+        <div class="tab-content" id="module-content"></div>
+    </div>
+
+
+    <div id="module-content-template" hidden>
+
+        <div class="module-options m-3 p-3">
+            <div class="media p-3 module-info-sec">
+                <img src="/extensions?picture=module_uuid&plugin_refresh" alt="" class="mr-3 mt-1" style="height:120px;">
+                <div class="media-body">
+                    <h4>
+                        module_name
+                        <small>
+                            <a href="#" onclick="edit_name('module_uuid', 'module_name')">Edit name</a>
+                        </small>
+                    </h4>
+                    <ul class="list-unstyled">
+                        <li>Created: module_created</li>
+                        <li>Creator: module_creator</li>
+                        <li>Downloads: module_downloads</li>
+                    </ul>
+                </div>
+                <div class="media-body">
+                    <ul class="float-right list-unstyled">
+                        <li class="mb-1">
+                            <button class="btn btn-info" onclick="switch_pin('module_uuid')">
+                                &nbsp;&nbsp;Switch Pinned&nbsp;&nbsp;
+                            </button>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-warning" onclick="change_picture('module_uuid')">
+                                &nbsp;Change Picture&nbsp;
+                            </button>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-danger" onclick="delete_module('module_uuid')">
+                                Delete Extension
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-1 p-3 module-option-sec">
+                <div class="container" id="opt-acc_module_id">
+
+                    <div class="card link-expander-card">
+                        <div class="card-header card-link" data-toggle="collapse" data-target="#collapse_one_1">
+                            <span class="card-link link-expander">Files</span>
+                        </div>
+                        <div class="collapse" id="collapse_one_1" data-parent="#opt-acc_module_id">
+                            <div class="card-body">
+                                <button class="btn btn-primary" onclick="upload_file('module_uuid')">
+                                    <i class="material-icons">add</i>Add File
+                                </button> <br><br>
+                                <ul class="list-group" id="files_list_module_id">
+                                    <li class="list-group-item bg-dark">no files</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card link-expander-card">
+                        <div class="card-header card-link" data-toggle="collapse" data-target="#collapse_one_2">
+                            <span class="card-link link-expander">Short Description</span>
+                        </div>
+                        <div class="collapse" id="collapse_one_2" data-parent="#opt-acc_module_id">
+                            <div class="card-body">
+                                <div class="float-left">
+                                    module_short_description
+                                    <br><br>
+                                </div>
+                                <button class="btn btn-outline-warning float-right" onclick="edit_short_desc('module_uuid', 'module_short_description')">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card link-expander-card">
+                        <div class="card-header card-link" data-toggle="collapse" data-target="#collapse_one_3">
+                            <span class="card-link link-expander">Description</span>
+                        </div>
+                        <div class="collapse" id="collapse_one_3" data-parent="#opt-acc_module_id">
+                            <div class="card-body">
+                                <div class="float-left">
+                                    <div class="non-md-module_uuid" hidden>module_description</div>
+                                    module_description_md
+                                    <br><br>
+                                </div>
+                                <button class="btn btn-outline-warning float-right" onclick="edit_desc('module_uuid')">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        const module_content_template = document.querySelector("#module-content-template").innerHTML
+    </script>
+    <script src="/static/js/acp/acp_extensions.js"></script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base/minimal_base.html" %}
+
+{%block pre_head%}
+    <meta name="description" content="{{error}}">
+    <title>Error {{ error_code }} - {{ error }}</title>
+    <style>
+        #navbar-spacer{
+            height: 0 !important;
+        }
+        #main-jumbotron{
+            background-image: url(/static/img/backgrounds/background_code_python_blur.png);
+            background-position: center;
+        }
+        #info-section{
+            min-height: 70vh;
+            text-align: center;
+        }
+        .info-text{
+            max-width: 50vw;
+            margin-left: 25vw;
+        }
+    </style>
+{%endblock%}
+
+{% block body %}
+    <div class="jumbotron text-center" id="main-jumbotron">
+        <h1 class="main-title">{{ error_code }} - {{ error }}</h1>
+    </div>
+    <div id="info-section">
+        <p class="info-text">{{error_description}}</p>
+        {% if error_traceback %}
+            <p> <a data-toggle="collapse" href="#coll1">SHOW TRACEBACK</a> </p>
+            <div class="collapse container text-left bg-dark" id="coll1">
+                <div class="p-3">
+                    {{ error_traceback|safe }}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <button onclick="history.back()" class="btn btn-primary mt-4">Go back</button>
+{% endblock %}

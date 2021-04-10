@@ -1,0 +1,152 @@
+.bg-apply{
+    min-height: 200px;
+    background-color: transparent;
+    background-position: 0;
+    text-align: center;
+    background-size: cover;
+}
+.jumbotron h1{
+    font-size: 65px;
+}
+
+.wrapper{
+    display: inline-flex;
+    margin-bottom: 50px;
+}
+.half{
+    background-color: var(--dark);
+    padding: 25px;
+    border-radius: 2.6rem;
+    min-height: 65vh;
+}
+.half.half-left{
+    width: 70vw;
+    margin-left: 3.5vw;
+    margin-right: 2.5vw;
+    word-wrap: anywhere;
+    word-break: break-all;
+}
+.half.half-right{
+    height: 100%;
+    width: 20vw;
+    min-height: 45vh;
+}
+
+.btn-fixed{
+    height: 40px;
+}
+
+a i.material-icons, .modal-hold button i.material-icons{
+    vertical-align: middle;
+    line-height: 0 !important;
+    position: relative;
+    top: -2px;
+}
+
+.older-releases{
+    max-height: 35vh;
+    background-color: #212529;
+}
+.older-releases .text-older-rel{
+    color: gray;
+}
+
+
+textarea.form-control{
+    transition: none;
+    min-height: 35vh;
+    border-radius: 0.5rem;
+}
+.form-control{
+    transition: all .3s;
+    background-color: #272b30;
+    color: #fff;
+}
+.form-control:focus{
+    background-color: #272b30;
+    color: #fff;
+}
+.hidden{
+    display: none;
+}
+
+
+.description-preview-div pre{
+    overflow-y: hidden;
+}
+code{
+    padding: 5px;
+    color: #e83e8c !important;
+    background-color: #373c47 !important;
+}
+#new-plugin-form .nav{
+    border-bottom: gray solid 1px;
+}
+#new-plugin-form .nav-item a{
+    color: white;
+}
+#new-plugin-form .nav-item a.active{
+    color: white !important;
+    border-left: gray solid 1px !important;
+    border-top: gray solid 1px !important;
+    border-right: gray solid 1px !important;
+}
+#new-plugin-form .nav-item a:hover{
+    color: white !important;
+    background-color: #272b30 !important;
+    border-left: gray solid 1px !important;
+    border-top: gray solid 1px !important;
+    border-right: gray solid 1px !important;
+    border-bottom: none !important;
+}
+.container.tab-pane{
+    padding: 0;
+    width: 100%;
+}
+.container.tab-pane textarea{
+    width: 100%;
+    min-height: 30vh;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.description-preview-div{
+    background-color: #272b30;
+    width: 100%;
+    min-height: 30vh;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: .5rem 1.1rem;
+    font-size: 1.063rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.bg-darker{
+    background-color: #272b30;
+}
+
+
+@media screen and (max-width: 481px){
+    .bg-apply{
+        min-height: 100px;
+    }
+    .wrapper{
+        display: block;
+    }
+    .half{
+        background-color: var(--dark);
+        padding: 25px;
+        border-radius: 2.6rem;
+        min-height: 20vh;
+    }
+    .half.half-left{
+        width: calc(100vw - 2*2.5vw);
+        margin-left: 2.5vw;
+        margin-bottom: 2.5vh;
+    }
+    .half.half-right{
+        height: 100%;
+        width: calc(100vw - 2*2.5vw);
+        margin-left: 2.5vw;
+    }
+}

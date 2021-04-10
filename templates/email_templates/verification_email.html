@@ -1,0 +1,18 @@
+{% extends "base/email_base.html" %}
+
+{% block title %}Account Verification{% endblock %}
+{% block header %}Account Verification{% endblock %}
+
+{% block body %}
+    <div style="margin-left: 30px">
+        <p>Hi, thanks for creating an account!</p>
+        <p>Please verify your account by pressing this button:</p>
+        <p style="text-align: center"><br><br>
+            <a style="text-decoration: none;padding: 40px 25vw;background-color: #02B875;border: none;color: white;cursor: pointer;border-radius: 2.6rem;" href="http://{{ app.url }}/verify/{{ code }}">
+                <span style="font-size: 30px;">Verify</span>
+            </a>
+        </p><br><br>
+        <p>If the button does not work please use this link:</p>
+        <a style="color: #2e72ea" href="http://{{ app.url }}/verify/{{ code }}">https://{{ app.url }}/verify/{{ code }}</a>
+    </div>
+{% endblock %}

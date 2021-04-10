@@ -1,0 +1,96 @@
+{% extends "base/acp_base.html" %}
+
+{% block head %}
+    <link rel='stylesheet' href="/static/css/acp/acp_users.css">
+    <script src="/static/js/modules/remarkable.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="d-inline-flex">
+        <div id="user-report-nav">
+            <h5 class="p-3">User Reports</h5>
+            <div>
+                <div class="mb-2">
+                    <input type="search" class="form-control bg-dark text-light" placeholder="Search..." id="user-search">
+                </div>
+            </div>
+            <ul id="user-report-list" class="nav">
+                <li><div class="spinner-border"></div></li>
+            </ul>
+        </div>
+        <div class="tab-content" id="user-report-content"></div>
+    </div>
+
+
+    <template id="user-report-content-template">
+
+        <div class="user-report-options m-3 p-3">
+            <div class="media p-3 user-report-info-sec">
+                <img src="/user?avatar=user_username" alt="" class="mr-3 mt-1" style="height:120px;">
+                <div class="media-body">
+                    <h4>user_username</h4>
+                    <ul class="list-unstyled">
+                        <li>Member since: user_created</li>
+                        <li>EMail: user_email</li>
+                        <li>Admin: user_admin</li>
+                    </ul>
+                </div>
+                <div class="media-body">
+                    <h5>Reported by: <b>user_report_creator</b></h5>
+                    <ul class="list-unstyled">
+                        <li>Reported on: user_report_created</li>
+                        <li>Type: user_report_type</li>
+                    </ul>
+                </div>
+                <div class="media-body">
+                    <ul class="float-right list-unstyled">
+                        <li class="mb-1">
+                            <button class="btn btn-danger" onclick="suspend_user('user_username')">
+                                &nbsp;&nbsp;&nbsp;Suspend User&nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-danger" onclick="delete_user('user_username')">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="float-right" style="width: 5px; padding: 5px"></div>
+                    <ul class="float-right list-unstyled">
+                        <li class="mb-1">
+                            <button class="btn btn-warning" onclick="delete_user_report('user_report_id')">
+                                &nbsp;&nbsp;&nbsp;Delete Report&nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-warning" onclick="delete_all_user_reports('user_username')">
+                                Delete All Reports
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-1 p-3 user-report-option-sec">
+
+                <div class="bg-dark p-3 mb-4">
+                    <h6>User Description</h6>
+                    user_description
+                </div>
+
+                <div class="bg-dark p-3 mb-4">
+                    <h6>Report Reason</h6>
+                    user_report_reason
+                </div>
+
+            </div>
+        </div>
+
+    </template>
+
+
+    <script>
+        const user_report_content_template = document.querySelector("#user-report-content-template").innerHTML
+    </script>
+    <script src="/static/js/acp/acp_users.js"></script>
+{% endblock %}

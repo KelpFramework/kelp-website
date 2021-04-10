@@ -1,0 +1,123 @@
+{% extends "base/acp_base.html" %}
+
+{% block head %}
+    <link rel='stylesheet' href="/static/css/acp/acp_plugins.css">
+{% endblock %}
+
+{% block body %}
+    <div class="row" style="overflow: hidden">
+
+        <div class="col-8 d-inline-flex">
+            <div id="plugin-nav">
+                <h5 class="p-3">Plugin Reports</h5>
+                <div>
+                    <div class="mb-2">
+                        <input type="search" class="form-control bg-dark text-light" placeholder="Search..." id="user-search">
+                    </div>
+                </div>
+                <ul id="plugin-list" class="nav">
+                    <li><div class="spinner-border"></div></li>
+                </ul>
+            </div>
+            <div class="tab-content" id="plugin-content"></div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="m-4 tag-tab">
+                <ul class="list-group tag-list"></ul>
+                <div class="w-100 d-flex justify-content-center mt-4">
+                    <button class="btn btn-success" onclick="add_tag()">Add a tag</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div id="plugin_content_template" hidden>
+        <div class="m-3 p-3 bg-dark">
+            <div class="media">
+                <img src="/plugins?picture=plugin_uuid" height="55px" class="mr-2">
+                <h4>plugin_name <small><br>plugin_uuid</small></h4>
+            </div>
+            <hr>
+            <ul>
+                <li>Creator: <a href="/user/plugin_creator" target="_blank">plugin_creator</a></li>
+                <li>Created: plugin_created</li>
+                <li>Updated: plugin_updated</li>
+                <li>Downloads: plugin_downloads</li>
+                <li>Tags: plugin_tags</li>
+            </ul>
+            <hr>
+            <div>plugin_short_description</div>
+            <hr>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#md-plugin_uuid">Markdown</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#raw-plugin_uuid">Raw</a>
+                </li>
+            </ul>
+            <div class="tab-content w-100">
+                <div class="tab-pane active" id="md-plugin_uuid">plugin_description_md</div>
+                <div class="tab-pane" id="raw-plugin_uuid">plugin_description</div>
+            </div>
+            <hr>
+            <div class="button-group">
+                <button class="btn btn-danger" onclick="delete_plugin('plugin_uuid')">Delete Plugin</button>
+            </div>
+        </div>
+    </div>
+    <div id="plugin_report_content_template" hidden>
+        <div class="m-3 p-3 bg-dark">
+            <div class="media">
+                <img src="/plugins?picture=plugin_uuid" height="55px" class="mr-2">
+                <h4>plugin_name <small><br>plugin_uuid</small></h4>
+            </div>
+            <hr>
+            <ul>
+                <li>Reporter: <a href="/user/report_by" target="_blank">report_by</a></li>
+                <li>Reported: report_created</li>
+                <li>Type: report_type</li>
+                <li>Reason: <br> report_reason</li>
+            </ul>
+            <hr>
+            <ul>
+                <li>Creator: <a href="/user/plugin_creator" target="_blank">plugin_creator</a></li>
+                <li>Created: plugin_created</li>
+                <li>Updated: plugin_updated</li>
+                <li>Downloads: plugin_downloads</li>
+                <li>Tags: plugin_tags</li>
+            </ul>
+            <hr>
+            <div>plugin_short_description</div>
+            <hr>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#md-plugin_uuid">Markdown</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#raw-plugin_uuid">Raw</a>
+                </li>
+            </ul>
+            <div class="tab-content w-100">
+                <div class="tab-pane active" id="md-plugin_uuid">plugin_description_md</div>
+                <div class="tab-pane" id="raw-plugin_uuid">plugin_description</div>
+            </div>
+            <hr>
+            <div class="button-group">
+                <button class="btn btn-danger" onclick="delete_plugin('plugin_uuid')">Delete Plugin</button>
+                <button class="btn btn-danger" onclick="delete_report('report_id')">Delete Report</button>
+                <button class="btn btn-danger" onclick="delete_reports('plugin_uuid')">Delete All Reports</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/acp/acp_plugins.js"></script>
+{% endblock %}

@@ -1,0 +1,218 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/font/Roboto/Roboto-Regular.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/font/Rubik/Rubik-Regular.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body *{
+    font-family: Roboto, serif;
+}
+
+
+
+
+
+
+.navbar{
+    border-bottom: solid 1px #444;
+    background-color: var(--dark);
+    height: 85px;
+}
+.navbar form .search-input input{
+    transition: all .3s;
+    display: block;
+    width: 200px;
+    background-color: #272b30;
+    color: #fff;
+    height: 44px;
+    z-index: 100 !important;
+}
+.navbar form .search-input input.using{
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 0;
+}
+.navbar form .search-input button{
+    border: 1px solid rgba(0,0,0,.1);
+    border-left: solid 1px #3a3f47;
+    background-color: #272b30;
+    height: 44px;
+}
+.navbar form .search-input button:focus{
+    border-color: #b9d0f8;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(69 130 calc(236 / 1.35));
+}
+.navbar form .autocomplete-box{
+    border: 1px solid rgba(0,0,0,.1);
+    background-color: #272b30;
+    display: none;
+    max-height: 280px;
+    overflow-y: auto;
+    position: absolute;
+    top: 40px;
+    width: 350px;
+    padding-top: 25px;
+    z-index: 99 !important;
+}
+.navbar form .autocomplete-box.active{
+    display: block;
+}
+.navbar form .autocomplete-box a{
+    position: relative;
+    display: flex;
+    background-color: transparent;
+    color: #fff;
+}
+.navbar form .autocomplete-box a:hover{
+  background-color: #3e444c;
+}
+.navbar form .autocomplete-box a img{
+    position: relative;
+    top: 5px;
+    left: -5px;
+    height: 32px;
+    width: 32px;
+    border-radius: 15%;
+}
+.navbar form .autocomplete-box a div{
+    position: relative;
+    left: 5px;
+}
+.navbar .btn-section{
+    display: inline-flex;
+}
+
+.link-top{
+    position: fixed;
+    z-index: 999;
+    bottom: 2vh;
+    right: 2vh;
+}
+.link-top button{
+    background: none;
+    border: none;
+    box-shadow: none;
+    transform: rotate(180deg);
+}
+.link-top button img{
+    width: 60px;
+}
+
+.link-expander span.material-icons{
+    transition: all .3s;
+    user-select: none;
+}
+.link-expander span.material-icons.expanded{
+    transform: rotate(180deg);
+}
+
+
+
+
+#navbar-spacer{
+    height: 85px;
+}
+
+
+
+
+footer{
+    margin-top: 50px;
+}
+footer ul{
+    margin: 20px 5px;
+}
+footer a:hover{
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 980px){
+    .navbar{
+        text-align: center;
+        height: auto;
+    }
+    .navbar .search-input{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .navbar *{
+        transition: all .3s;
+    }
+    /*.link-top{*/
+    /*    display: none;*/
+    /*}*/
+    footer{
+        text-align: center;
+    }
+}
+@media screen and (max-width: 481px){
+    .navbar{
+        text-align: center;
+        height: auto;
+    }
+    .navbar .search-input{
+        display: none;
+    }
+    .navbar *{
+        transition: all .3s;
+    }
+    /*.link-top{*/
+    /*    display: none;*/
+    /*}*/
+    footer{
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+
+img[src$=".gif"], img[src$=".png"] {
+    image-rendering: -moz-crisp-edges;         /* Firefox */
+    image-rendering:   -o-crisp-edges;         /* Opera */
+    image-rendering: crisp-edges;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: rgb(102, 102, 102);
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 25px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+:target:before {
+    content:"";
+    display:block;
+    height:90px; /* fixed header height*/
+    margin:-90px 0 0; /* negative fixed header height */
+}

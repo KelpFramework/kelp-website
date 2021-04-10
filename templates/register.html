@@ -1,0 +1,99 @@
+{% extends "base/minimal_base.html" %}
+
+{% block head %}
+    <style>
+        .form-control{
+            transition: all .3s;
+            background-color: #272b30;
+            color: #fff;
+        }
+        .form-control:focus{
+            background-color: #272b30;
+            color: #fff;
+        }
+        #navbar-spacer{
+            height: 20px;
+        }
+        .spacer{
+            height: 50px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% if verify %}
+        <div class="container">
+            <div class="card bg-dark mt-2 p-5">
+                <h3 class="mb-5">A verification Email has been sent to your provided email address!</h3>
+                <a href="?sendAgain" class="btn btn-outline-warning">Send another verification email</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="card bg-dark mt-2">
+                <form method="POST" class="card-body" enctype="multipart/form-data">
+                    <input type="text" class="form-control mb-4" placeholder="Username" name="username" pattern="[A-Za-z0-9_-]{4,}" title="at least 4 characters: A-Z a-z _ -" required>
+
+                    <input type="password" class="form-control mb-3" placeholder="Password" name="password" pattern="[A-Za-z0-9-_+%€/]{6,}" title="at least 6 characters A-Z a-z 0-9 - _ + % € /" required>
+                    <input type="password" class="form-control" placeholder="Repeat Password" name="pwd-conf" pattern="[A-Za-z0-9-_+%€/]{6,}" title="at least 6 characters A-Z a-z 0-9 - _ + % € /" required>
+                    <span class="text-danger ml-3" id="pwd-inf" hidden>Passwords do not match</span>
+
+                    <input type="email" class="form-control mb-5 mt-4" placeholder="Email" name="email" required>
+
+                    <textarea class="form-control mb-3" name="description" placeholder="Description (optional)" style="height: 25vh"></textarea>
+                    Avatar (optional):
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input btn" name="avatar" id="customFile" accept="image/png,image/jpeg,image/gif">
+                        <label class="custom-file-label" for="customFile">No file selected</label>
+                    </div>
+
+                    <div class="mt-5">
+                        <label>
+                            <input type="checkbox" required>
+                            I have read and agree to the <a href="/privacy">Privacy Policy</a> of this page.
+                        </label>
+                    </div>
+
+                    <br> <span class="text-danger" id="error">{{ error }}</span> <br>
+                    <input type="submit" class="btn btn-lg btn-primary w-100" value="Register">
+                </form>
+            </div>
+        </div>
+        <div class="spacer"></div>
+
+        <script>
+            $(".custom-file-input").on("change", function() {
+                let fileName = $(this).val().split("\\").pop()
+                if(fileName!=="") {
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName)
+                }else{
+                    $(this).siblings(".custom-file-label").addClass("selected").html("No file selected")
+                }
+            })
+
+            document.querySelector("form").addEventListener("submit", e => {
+                if(e.target.checkValidity()){
+                    let passwd_0 = document.querySelector("input[name=password]").value
+                    let passwd_1 = document.querySelector("input[name=pwd-conf]").value
+                    if(passwd_0 !== passwd_1){
+                        e.preventDefault()
+                    }
+                }
+            })
+            document.querySelector("input[name=pwd-conf]").addEventListener("keyup", e => {
+                let pwd_inf = document.querySelector("#pwd-inf")
+                let passwd_0 = document.querySelector("input[name=password]").value
+
+                if(pwd_inf.hidden) pwd_inf.hidden = false
+
+                if(passwd_0 === e.target.value && e.target.value !== ""){
+                    pwd_inf.innerText = "Passwords match"
+                    pwd_inf.classList.replace("text-danger", "text-success")
+                }else{
+                    pwd_inf.innerText = "Passwords do not match"
+                    pwd_inf.classList.replace("text-success", "text-danger")
+                }
+            })
+        </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,188 @@
+.parallax{
+    position: relative;
+    height: calc(100% - 6rem);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax .bg-blur{
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+.parallax.first{
+    height: calc(100% - 85px) !important;
+}
+.parallax.first .bg-blur-first{
+    transition: all 50ms;
+    height: 100%;
+    width: 100%;
+}
+
+.parallax div{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+.covered{
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.first-img {
+    background-image: url(/static/img/backgrounds/background_mc_kelp_underwater_0.png);
+}
+.second-img {
+    background-image: url(/static/img/backgrounds/background_mc_kelp_underwater_1.png);
+}
+.third-img {
+    background-image: url(/static/img/backgrounds/background_mc_kelp_underwater_2.png);
+}
+.fourth-img {
+    background-image: url(/static/img/backgrounds/background_mc_kelp_underwater_3.png);
+}
+
+.title-text{
+    top: 22vh !important;
+    font-size: 3rem;
+    font-family: Rubik, serif;
+    font-weight: bold;
+}
+.title-text img{
+    width: 80vw;
+}
+.jumbotron{
+    background-color: #282c34;
+    margin-bottom: 0;
+}
+.jumbotron .container{
+    text-align: left;
+}
+.card{
+    margin: 15px 0;
+}
+.card-header span.material-icons{
+    vertical-align: middle;
+    line-height: 0 !important;
+    position: relative;
+    top: -2px;
+}
+.card .card-body{
+    text-align: left !important;
+}
+.jumbotron .container .row pre{
+    min-width: 350px;
+}
+.jumbotron .container .row div{
+    text-align: center;
+}
+.jumbotron .container .row .col img{
+    max-width: 100%;
+}
+
+.hljs{
+    background-color: #353a45 !important;
+}
+.text-left{
+    text-align: left !important;
+}
+
+.scroll-down{
+    bottom: 40px;
+}
+.scroll-down button{
+    transition: opacity .3s linear;
+    background: none;
+    opacity: 1;
+    border: none;
+}
+.scroll-down button.hide{
+    opacity: 0;
+}
+
+
+img{
+    user-select: none;
+    -webkit-user-drag: none;
+}
+footer{
+    margin-top: 0;
+}
+
+
+
+
+
+
+
+
+
+.fadeInDown {
+    animation-name: fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.fadeIn {
+    opacity:0;
+    animation:fadeIn ease-in 1;
+    animation-fill-mode:forwards;
+    animation-duration:1s;
+}
+.fadeIn.first, .fadeInDown.first {
+    animation-delay: 0.4s;
+}
+.fadeIn.second, .fadeInDown.second {
+    animation-delay: 0.6s;
+}
+.fadeIn.third, .fadeInDown.third {
+    animation-delay: 0.8s;
+}
+.fadeIn.fourth, .fadeInDown.fourth {
+    animation-delay: 1s;
+}
+
+
+@media screen and (max-width: 980px){
+    body{
+        width: 100%;
+    }
+    .card, .code-editor{
+        min-width: 100% !important;
+    }
+}
+
+.card{
+    background: none;
+    border: none;
+}
+.card-body, .card-header, .card-footer{
+    background-color: var(--dark);
+}

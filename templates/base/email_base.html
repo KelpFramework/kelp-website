@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{{ app.name }} {% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+    </head>
+    <body style="color: white;">
+        <div style="width: 100%;">
+            <div style="padding: 2rem 1rem; margin-bottom: 2rem; border-radius: .3rem; background-color: #4582ec;">
+                <h1 style="text-align: center;">{% block header %}{% endblock %}</h1>
+            </div>
+            <div style="padding: 2rem 1rem; margin-bottom: 2rem; border-radius: .3rem; background-color: #363d41;">
+                {% block body %}{% endblock %}
+            </div>
+            <div style="padding: 2rem 1rem; margin-bottom: 2rem; border-radius: .3rem; background-color: #363d41;">
+                <p>This is just a one-time Email. You will receive no regular ones!</p>
+            </div>
+        </div>
+    </body>
+</html>

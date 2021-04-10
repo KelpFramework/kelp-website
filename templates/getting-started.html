@@ -1,0 +1,23 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/modules/atom-one-dark.min.css">
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+
+    {{ md_html|safe }}
+
+    </div>
+
+    <script src="/static/js/modules/highlight.min.js"></script>
+    <script>
+        {
+            hljs.initHighlightingOnLoad()
+        }
+    </script>
+{% endblock %}

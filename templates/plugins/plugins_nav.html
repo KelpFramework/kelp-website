@@ -1,0 +1,50 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/plugins/plugins_nav.css">
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron bg-1">
+        <h1>Kelp Plugins</h1>
+    </div>
+
+    <div id="plugins-page">
+
+        <div id="plugins-tags" class="plugins-sidebar card">
+            <div id="tags-toggle" class="card-header card-link" data-target="#tags-cll" data-toggle="collapse">Filter</div>
+            <div id="tags-cll" class="collapse">
+                <form class="card-body">
+                    <input class="form-control" placeholder="String Filter" type="text">
+                    <hr>
+                    <h6>Tags</h6>
+                    <ul class="list-unstyled ml-3"></ul>
+                    <hr>
+                    <div class="flex-row w-100">
+                        <button type="button" class="btn btn-outline-info" onclick="apply_filters()">Apply Filters</button>
+                        <button type="button" class="btn btn-outline-warning" onclick="reset_filters()">Reset Filters</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="plugins-main">
+            {% if account != None %}
+                <div class="card w-100">
+                    <div class="card-header">
+                        <a href="/plugins/new" class="btn btn-primary"><i class="material-icons">add</i> Create a new Plugin</a>
+                        <a href="/profile/plugins" class="btn btn-info"><i class="material-icons">power</i> My Plugins</a>
+                    </div>
+                </div>
+            {% endif %}
+            <span id="query-result"></span>
+            <ul class="list-group"></ul>
+            <div class="w-100 spinner-holder mt-5">
+                <div class="spinner-border"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/static/js/plugins/plugins_nav.js"></script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/extensions/extensions_nav.css">
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron bg-1">
+        <h1>Kelp Extensions</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div>
+            <h3>Pinned Extensions</h3>
+            <div class="row row-pinned"></div>
+            <hr>
+            <h3>All Extensions</h3>
+            <div class="row row-normal"></div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="w-100 spinner-holder">
+        <div class="spinner-border"></div>
+    </div>
+
+    <script src="/static/js/extensions/extensions_nav.js"></script>
+{% endblock %}

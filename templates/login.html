@@ -1,0 +1,57 @@
+{% extends "base/minimal_base.html" %}
+
+{% block head %}
+    <style>
+        .form-control{
+            transition: all .3s;
+            background-color: #272b30;
+            color: #fff;
+        }
+        .form-control:focus{
+            background-color: #272b30;
+            color: #fff;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% if non_verified %}
+        <div class="container">
+            <div class="card bg-dark mt-2 p-5">
+                <h3 class="mb-5">You must verify your account before you can use it!</h3>
+                <a href="/register?sentAgain" class="btn btn-outline-warning">Send another verification email</a>
+            </div>
+        </div>
+    {% elif _reset %}
+        <div class="container">
+            <div class="card bg-dark mt-5">
+                <form method="POST" action="/login?reset={{ _reset }}" class="card-body">
+                    <span>Please enter a new Password:</span>
+                    <input type="password" class="form-control" placeholder="Password" name="reset_password" pattern="[A-Za-z0-9-_+%€/]{6,}" title="at least 6 characters A-Z a-z 0-9 - _ + % € /" required>
+                    <input type="hidden" name="reset" value="{{ _reset }}">
+                    <br>
+                    <input type="submit" class="btn btn-lg btn-primary w-100" value="Reset Password">
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="card bg-dark mt-5">
+                <form method="POST" action="/login?goto_confirm={{ redirect }}" class="card-body">
+                    <input type="text" class="form-control mb-1" placeholder="Username" name="username" pattern="[A-Za-z0-9_-]{4,}" title="at least 4 characters: A-Z a-z _ -" required>
+                    <input type="password" class="form-control" placeholder="Password" name="password" pattern="[A-Za-z0-9-_+%€/]{6,}" title="at least 6 characters A-Z a-z 0-9 - _ + % € /" required>
+                    <br> <span class="text-danger" id="error">{{ error }}</span> <br>
+                    <input type="submit" class="btn btn-lg btn-primary w-100" value="Login">
+                    <div class="text-center mt-3">
+                        <span>Or <a class="underlineHover" href="/register">sign up</a> for a new account</span>
+                    </div>
+                </form>
+                <div class="card-footer">
+                    <a class="underlineHover passwd-reset" href="">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <script src="/static/js/pages/login.js"></script>
+{% endblock %}

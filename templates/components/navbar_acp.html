@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" href="/">
+        <img src="/favicon" alt="logo" style="width:60px;">
+        <span class="navbar-brand-logotext"> Admin Panel</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/acp">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/acp/extensions">Extensions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/acp/plugins">Plugins</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/acp/users">Users</a>
+            </li>
+        </ul>
+        <div class="dropdown ml-3">
+            <button class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown">{{ account }} </button>
+            <div class="dropdown-menu dropdown-menu-left">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/">Leave ACP</a>
+                <a class="dropdown-item text-danger" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,137 @@
+body{
+    overflow: hidden;
+}
+
+textarea.form-control{
+    transition: none;
+    min-height: 35vh;
+    border-radius: 0.5rem;
+}
+
+.card-link{
+    cursor: pointer;
+}
+
+#plugin-nav{
+    width: 12vw;
+    height: calc(100vh - 85px);
+    border-right: solid 1px #111;
+    overflow-y: hidden;
+}
+#plugin-list{
+    height: calc(100vh - 85px - 130px);
+    display: inherit !important;
+    flex-wrap: inherit !important;
+    overflow-y: auto;
+}
+#plugin-list .spinner-border{
+    margin-top: 25vh;
+    margin-left: 5vw;
+}
+#plugin-list .plugin-btn{
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    border: none;
+    text-align: left;
+    padding: 5px;
+    transition: all .2s;
+}
+#plugin-list .plugin-btn:hover{
+    background-color: #555;
+    padding-left: 30px;
+}
+#plugin-list .plugin-btn.active{
+    border: none;
+    outline: none;
+    background-color: #4CAF50;
+    color: white;
+    padding-left: 30px;
+}
+#plugin-list .plugin-btn small{
+    color: var(--info);
+    transform: scale(0.65) rotate(45deg);
+}
+#plugin-list .plugin-btn.active small{
+    color: var(--white);
+}
+.btn-nostyle{
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin-top: 20px;
+    transition: all .2s;
+}
+.btn-nostyle:hover{
+    background-color: #555;
+    margin-top: 15px;
+    padding: 10px;
+    color: var(--success) !important;
+}
+.btnbottom{
+    width: 12vw;
+    border-right: solid 1px #111;
+    height: 60px;
+}
+#plugin-content{
+    position: relative;
+    width: calc(8*(100vw/12) - 12vw);
+    border-right: solid 1px gray;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+.tag-tab{
+    height: calc(100vh - 80px);
+}
+#plugin-content .spinner-border{
+    margin-left: 27vw;
+    margin-top: 30vh;
+}
+.btn i.material-icons{
+    vertical-align: middle;
+    line-height: 0 !important;
+    position: relative;
+    top: -2px;
+}
+#plugin-content .collapse{
+    max-height: 45vh;
+    overflow-y: auto;
+}
+#plugin-content .collapsing{
+    max-height: 45vh;
+}
+#plugin-content .tab-pane{
+    height: 30%;
+    overflow: auto;
+}
+ul li{
+    word-wrap: break-word;
+    word-break: break-word;
+}
+.d-inline-flex{
+    padding-right: 0;
+}
+
+
+
+.tag-list{
+    overflow-y: auto;
+    height: 80%;
+}
+.tag-list li{
+    background-color: var(--dark);
+}
+
+
+
+.form-control{
+    transition: all .3s;
+    background-color: #272b30;
+    color: #fff;
+}
+.form-control:focus{
+    background-color: #272b30;
+    color: #fff;
+}

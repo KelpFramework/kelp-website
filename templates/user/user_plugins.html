@@ -1,0 +1,25 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/user/user_plugins.css">
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron bg-1">
+        <h1>My Plugins</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div id="plugins-main">
+            <ul class="list-group row-plugins"></ul>
+
+            <div class="spacer"></div>
+            <div class="w-100 spinner-holder">
+                <div class="spinner-border"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/static/js/user/user_plugins.js"></script>
+{% endblock %}

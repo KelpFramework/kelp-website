@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" href="/">
+        <img src="/favicon" alt="logo" style="width:60px;">
+        <span class="navbar-brand-logotext">{{ app.name }}</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/extensions">Extensions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/plugins">Plugins</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/getting-started">Getting started</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/PXAV/kelp/" target="_blank">GitHub</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 mr-4" action="/search_engine">
+            <input type="hidden" name="q-search">
+            <div class="input-group search-input">
+                <input class="form-control" type="search" placeholder="Search" name="search" autocomplete="off" required>
+                <div class="input-group-append">
+                    <button class="btn form-control material-icons" type="submit">search</button>
+                </div>
+            </div>
+            <div class="autocomplete-box list-group"></div>
+        </form>
+        {% if account != None %}
+            <div class="btn-section">
+                <div class="dropdown ml-3">
+                    <button class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown">{{ account }} </button>
+                    <div class="dropdown-menu dropdown-menu-left user-account-dropdown">
+                        <a class="dropdown-item" href="/profile">My Profile</a>
+                        <a class="dropdown-item" href="/profile/plugins">My Plugins</a>
+                        <div class="dropdown-divider"></div>
+                        {% if user.get_admin() %}
+                            <a class="dropdown-item" href="/acp">Admin Panel</a>
+                        {% endif %}
+                        <a class="dropdown-item text-danger" href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <a class="btn btn-outline-primary" href="/login{{ "?goto_confirm=" + request.path if request.path != "/" }}">Login</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

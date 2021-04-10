@@ -1,0 +1,16 @@
+{% extends "base/minimal_base.html" %}
+
+{% block nav %}
+    {% include "components/navbar_acp.html" %}
+{% endblock %}
+
+{% block body_extensions %}
+    <div class="link-top">
+        <button title="Scroll to top"><img src="/static/img/scroll_down.gif"></button>
+    </div>
+{% endblock %}
+{% block body %}{% endblock %}
+
+{% block base_scripts %}
+    <script src="/static/js/base_scripts/acp_base_script.js"></script>
+{% endblock %}

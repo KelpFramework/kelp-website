@@ -1,0 +1,6 @@
+SQLAlchemy
+Flask
+Markdown
+requests
+Werkzeug
+schedule

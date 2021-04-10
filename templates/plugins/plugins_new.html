@@ -1,0 +1,102 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/plugins/plugins_new.css">
+{% endblock %}
+
+{% block body %}
+<form id="new-plugin-form">
+
+    <div class="jumbotron bg-apply">
+        <h1 id="plugin-name-preview">Plugin Banner</h1>
+        <div class="">
+            Plugin Banner ( 1920 x 600 recommended ):
+            <div class="custom-file">
+                <input class="custom-file-input" style="cursor: pointer" type="file" name="plugin_banner" accept="image/png,image/jpeg,image/gif" required>
+                <label class="custom-file-label">No file chosen</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card container mt-5">
+        <div class="card-header">Create a new Plugin</div>
+        <div class="card-body">
+{#            <form id="new-plugin-form">#}
+            <div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-12">
+                        <img class="custom-file-preview border border-primary mt-2" src="/static/img/no_img.png">
+                    </div>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="form-group">
+                            <label>Plugin Name:</label>
+                            <input class="form-control" type="text" name="plugin_name" placeholder="e.g. Master Bedwars" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Short Description:</label>
+                            <input class="form-control" type="text" name="plugin_short_description" placeholder="Awesome Bedwars Plugin with cool features" required>
+                        </div>
+                        Plugin Icon ( 512 x 512 recommended ):
+                        <div class="custom-file">
+                            <input class="custom-file-input" style="cursor: pointer" type="file" name="plugin_icon" accept="image/png,image/jpeg,image/gif" required>
+                            <label class="custom-file-label">No file chosen</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-2">Plugin Tags:</div>
+                <div class="row bg-darker p-4 mx-3 rounded">
+                {% for tag in tags %}
+                    <div class="custom-control custom-switch col-lg-2 col-md-4 col-sm-6">
+                        <input type="checkbox" class="custom-control-input plugin_tag" id="switch_{{ tag }}" name="{{ tag }}">
+                        <label class="custom-control-label" for="switch_{{ tag }}">{{ tag }}</label>
+                    </div>
+                {% endfor %}
+                </div>
+
+                <div class="mt-4 mb-2">Plugin Description:</div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#description-edit">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#description-preview">Preview</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="description-edit" class="container tab-pane active">
+                        <textarea name="plugin_description" placeholder="Markdown or HTML" class="form-control" required></textarea>
+                    </div>
+                    <div id="description-preview" class="container tab-pane">
+                        <div class="description-preview-div"></div>
+                        <small>(This preview may not be entirely accurate)</small>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <label>
+                        <input id="check_1" type="checkbox" required>
+                        I have read and agree to the <a href="/privacy" target="_blank">Privacy Policy</a> of this page.
+                    </label> <br>
+                    <label>
+                        <input id="check_2" type="checkbox" required>
+                        I have read and accepted the <a href="/community-guidelines" target="_blank">Community Guidelines</a> of this page.
+                    </label>
+                </div>
+            </div>
+{#            </form>#}
+        </div>
+        <div class="card-footer">
+            <div>
+                <input class="btn btn-outline-success" type="submit" form="new-plugin-form" value="Create Plugin" id="submit-btn">
+                <input class="btn btn-outline-danger" type="reset" form="new-plugin-form" value="Reset Form">
+            </div>
+        </div>
+    </div>
+
+</form>
+
+    <script src="/static/js/modules/remarkable.js"></script>
+    <script src="/static/js/plugins/plugins_new.js"></script>
+{% endblock %}

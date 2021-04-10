@@ -1,0 +1,81 @@
+.jumbotron{
+    min-height: 200px;
+    background-position: 0;
+    text-align: center;
+    background-size: cover;
+}
+
+.form-control, .custom-file-label{
+    transition: all .3s;
+    background-color: #272b30;
+    color: #fff;
+}
+.form-control:focus, .custom-file-label:focus{
+    background-color: #272b30;
+    color: #fff;
+}
+.custom-file-preview{
+    height: 220px;
+    width: 220px;
+    flex: none;
+    padding: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+pre{
+    overflow-y: hidden;
+}
+code{
+    padding: 5px;
+    color: #e83e8c !important;
+    background-color: #373c47 !important;
+}
+
+
+#new-plugin-form .nav{
+    border-bottom: gray solid 1px;
+}
+#new-plugin-form .nav-item a{
+    color: white;
+}
+#new-plugin-form .nav-item a.active{
+    color: white !important;
+    border-left: gray solid 1px !important;
+    border-top: gray solid 1px !important;
+    border-right: gray solid 1px !important;
+}
+#new-plugin-form .nav-item a:hover{
+    color: white !important;
+    background-color: #272b30 !important;
+    border-left: gray solid 1px !important;
+    border-top: gray solid 1px !important;
+    border-right: gray solid 1px !important;
+    border-bottom: none !important;
+}
+
+.container.tab-pane{
+    padding: 0;
+    width: 100%;
+}
+.container.tab-pane textarea{
+    width: 100%;
+    min-height: 30vh;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.description-preview-div{
+    background-color: #272b30;
+    width: 100%;
+    min-height: 30vh;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: .5rem 1.1rem;
+    font-size: 1.063rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.bg-darker{
+    background-color: #272b30;
+}

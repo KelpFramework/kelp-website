@@ -1,0 +1,56 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/extensions/extensions_page.css">
+    <link rel="stylesheet" href="/static/css/modules/atom-one-dark.min.css">
+    <script>
+        const module_uuid = "{{ module.uuid }}"
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron bg-apply">
+        <h1>{{ module.module_name }}</h1>
+    </div>
+    <div class="wrapper">
+        <div class="half half-left">{{ module.description_md|safe }}</div>
+        <div class="half half-right">
+            <h4>Info</h4>
+            <ul class="list-unstyled ml-1">
+                <li>Creator: <a class="float-right" href="/user/{{ module.creator }}">{{ module.creator }}</a></li>
+                <li>Created: <span class="float-right">{{ module.created.strftime("%d.%m.%Y %H:%M") }}</span></li>
+                <li>Downloads: <span class="float-right">{{ module.downloads }}</span></li>
+            </ul>
+            <h4>Releases:</h4>
+            {% if files != [] %}
+                <div class="bg-success rounded p-2">
+                    <h6>Latest Release &nbsp; <small>({{ files[0].modified.strftime("%d.%m.%Y %H:%M:%S") }})</small></h6>
+                    <a class="ml-2 text-black-50" href="/extensions/{{ module.uuid }}/download/{{ files[0].name }}">
+                        <i class="material-icons">download</i> {{ files[0].name }}
+                    </a>
+                </div>
+                <div class="rounded p-2 mt-2 older-releases">
+                    <h6>Older Release</h6>
+                    {% if py.len(files[1:]) > 0 %}
+                        <ul class="list-unstyled">
+                            {% for file in files[1:] %}
+                                <li>
+                                    <a class="ml-2 text-older-rel" title="last modified: {{ file.modified.strftime("%d.%m.%Y %H:%M:%S") }}" href="/extensions/{{ module.uuid }}/download/{{ file.name }}">
+                                        <i class="material-icons">download</i> {{ file.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="ml-2 text-older-rel">no older releases</span>
+                    {% endif %}
+                </div>
+            {% else %}
+                no releases
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="/static/js/modules/highlight.min.js"></script>
+    <script src="/static/js/extensions/extensions_page.js"></script>
+{% endblock %}

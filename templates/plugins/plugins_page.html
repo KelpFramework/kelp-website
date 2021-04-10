@@ -1,0 +1,135 @@
+{% extends "base/main_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/plugins/plugins_page.css">
+    <link rel="stylesheet" href="/static/css/modules/atom-one-dark.min.css">
+    <script>
+        const plugin_uuid = "{{ plugin.uuid }}"
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron bg-apply">
+        <h1>{{ plugin.plugin_name }}</h1>
+        {% if (user and user.get_username() == plugin.creator) and not preview %}
+            <button class="btn m-1 btn-warning float-right" onclick="change_banner('{{ plugin.uuid }}')">Change Banner</button>
+            <button class="btn m-1 btn-warning float-right" onclick="change_icon('{{ plugin.uuid }}')">Change Icon</button>
+        {% endif %}
+    </div>
+    <div class="wrapper">
+        <div class="half half-left">
+            {% if (user and user.get_username() == plugin.creator) and not preview %}
+                <div class="border border-success p-3 m-2 d-flex justify-content-between">
+                    <div>
+                        <small>Name:</small><br>
+                        {{ plugin.plugin_name }}
+                    </div>
+                    <button class="btn btn-warning" onclick="edit_name('{{ plugin.uuid }}', '{{ plugin.plugin_name }}')">Edit</button>
+                </div>
+                <div class="border border-info p-3 m-2 d-flex justify-content-between">
+                    <div>
+                        <small>Short description:</small><br>
+                        {{ plugin.short_description }}
+                    </div>
+                    <button class="btn btn-warning" onclick="edit_short_description('{{ plugin.uuid }}', '{{ plugin.short_description }}')">Edit</button>
+                </div>
+                <div class="border border-info p-3 m-2 d-flex justify-content-between">
+                    <div>
+                        <small>Tags:</small><br>
+                        {% for tag in plugin.tags.split(",") %}
+                            <span class="badge badge-info m-1">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-fixed btn-warning" onclick="edit_tags('{{ plugin.uuid }}', '{{ plugin.tags }}')">Edit</button>
+                </div>
+                <div class="border border-primary p-3 m-2 d-flex justify-content-between">
+                    <div class="w-75 markdown-container">
+                        <small>Description:</small><br>
+                        {{ plugin.description_md|safe }}
+                    </div>
+                    <div class="invis-raw-desc-area hidden">{{ plugin.description }}</div>
+                    <button class="btn btn-fixed btn-warning" onclick="edit_description('{{ plugin.uuid }}', '.invis-raw-desc-area')">Edit</button>
+                </div>
+                <div class="mt-5">
+                    <a>Click <a target="_blank" href="?preview">here</a> to see how this page looks for other users.</a>
+                </div>
+            {% else %}
+                <div class="markdown-container">
+                    {{ plugin.description_md|safe }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="half half-right">
+            <h4>Info</h4>
+            <ul class="list-unstyled ml-1">
+                <li>Creator: <a class="float-right" href="/user/{{ plugin.creator }}">{{ plugin.creator }}</a></li>
+                <li>Created: <span class="float-right">{{ py.datetime.fromtimestamp(plugin.created).strftime("%d.%m.%Y %H:%M") }}</span></li>
+                <li>Last Updated: <span class="float-right">{{ py.datetime.fromtimestamp(plugin.updated).strftime("%d.%m.%Y %H:%M") }}</span></li>
+                <li>Downloads: <span class="float-right">{{ plugin.downloads }}</span></li>
+            </ul>
+            <h4>Releases: </h4>
+            {% if files != [] %}
+                <div class="bg-success rounded p-2">
+                    <h6>Latest Release &nbsp; <small>({{ files[0].modified.strftime("%d.%m.%Y %H:%M:%S") }})</small></h6>
+                    {% if files[0].type == "link" %}
+                        <a class="ml-2 text-black-50" href="{{ files[0].target }}" target="_blank">
+                            <i class="material-icons">link</i> {{ py.utils.string.shorten_to(files[0].name, 25) }}
+                        </a>
+                    {% else %}
+                        <a class="ml-2 text-black-50" href="/plugins/{{ plugin.uuid }}/download/{{ files[0].name }}">
+                            <i class="material-icons">download</i> {{ py.utils.string.shorten_to(files[0].name, 25, True) }}
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="rounded p-2 mt-2 older-releases">
+                    <h6>Older Release</h6>
+                    {% if py.len(files[1:]) > 0 %}
+                        <ul class="list-unstyled">
+                            {% for file in files[1:] %}
+                                <li>
+                                    {% if file.type == "link" %}
+                                        <a class="ml-2 text-older-rel" title="last modified: {{ file.modified.strftime("%d.%m.%Y %H:%M:%S") }}" href="{{ file.target }}" target="_blank">
+                                            <i class="material-icons">link</i> {{ py.utils.string.shorten_to(file.name, 25) }}
+                                        </a>
+                                    {% else %}
+                                        <a class="ml-2 text-older-rel" title="last modified: {{ file.modified.strftime("%d.%m.%Y %H:%M:%S") }}" href="/plugins/{{ plugin.uuid }}/download/{{ file.name }}">
+                                            <i class="material-icons">download</i> {{ py.utils.string.shorten_to(file.name, 25, True) }}
+                                        </a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="ml-2 text-older-rel">no older releases</span>
+                    {% endif %}
+                </div>
+            {% else %}
+                no releases
+            {% endif %}
+            <div class="no-valid"></div>
+
+            {% if (user and user.get_username() == plugin.creator) and not preview %}
+                <hr>
+                <div class="button-group">
+                    <button class="btn btn-info m-1" onclick="upload_file('{{ plugin.uuid }}')">Add a file</button>
+                    <button class="btn btn-primary m-1" onclick="link_file('{{ plugin.uuid }}')">Link a Website</button>
+                    <button class="btn btn-warning m-1" onclick="manage_files('{{ plugin.uuid }}')">Manage files</button>
+                </div>
+            {% endif %}
+
+            <hr>
+            <div class="button-group">
+                {% if (user and (user.get_admin() or user.get_username() == plugin.creator)) and not preview %}
+                    <button class="btn btn-danger" onclick="delete_plugin('{{ plugin.uuid }}')">Delete Plugin</button>
+                {% endif %}
+                <a class="btn btn-outline-danger" href="/plugins/{{ plugin.uuid }}/report">Report</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/modules/highlight.min.js"></script>
+    {% if (user and user.get_username() == plugin.creator) and not preview %}
+        <script src="/static/js/modules/remarkable.js"></script>
+    {% endif %}
+    <script src="/static/js/plugins/plugins_page.js"></script>
+{% endblock %}
