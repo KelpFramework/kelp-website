@@ -5,6 +5,10 @@
 Join the [**DISCORD**](https://discord.gg/KVtjCMwk4x) for exclusive updates, feature voting, etc.
 Share and download free plugins with the community
 
+![](./static/github_resources/img/screenshots/index_01.png)
+
+![](./static/github_resources/img/screenshots/index_02.png)
+
 ### What is Kelp?
 Visit the [Kelp repo](https://github.com/KelpFramework/kelp) for more info
 Additionally you can also take a look at [this](https://github.com/KelpFramework/kelp/wiki/What-is-Kelp%3F) Wiki page.

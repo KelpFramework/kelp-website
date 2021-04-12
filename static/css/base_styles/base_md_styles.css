@@ -29,3 +29,6 @@
 .markdown-container table tr:nth-child(2n) {
     background-color: #2c3036;
 }
+.markdown-container img{
+    width: 100%;
+}
