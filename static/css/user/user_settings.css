@@ -23,3 +23,9 @@
 .card-header{
     cursor: pointer;
 }
+.card-header span.material-icons{
+    vertical-align: middle;
+    line-height: 0 !important;
+    position: relative;
+    top: -2px;
+}

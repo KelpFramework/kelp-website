@@ -8,7 +8,7 @@ import os
 application_host = "unknown.domain"
 application_url = "kelp.unknown.domain"
 application_name = "Kelp Framework"
-application_version = "beta-0.89.5"
+application_version = "beta-0.89.6"
 
 working_dir = os.path.dirname(os.path.realpath(__file__))
 temp_db = TempDatabase(configuration.temp_db_template)

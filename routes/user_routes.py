@@ -69,7 +69,12 @@ def profile_settings():
                 return redirect("/logout")
 
         return api_utils.empty_success()
-    return render_template("user/user_settings.html")
+    return render_template(
+        "user/user_settings.html",
+        has_extensions=kelp_module_repo.get_user_has_modules(
+            session.get("username")
+        )
+    )
 
 
 @app.route("/user/<username>")

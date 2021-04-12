@@ -51,6 +51,10 @@ def get_modules_by_user(user):
     )
 
 
+def get_user_has_modules(user):
+    return KelpModule.query.filter_by(creator=user).count() > 0
+
+
 def get_paginated_modules_by_user(user, start_at=1, per_page=18):
     return sql_utils.sql_list_to_json(
         KelpModule.query.filter_by(creator=user).order_by(KelpModule.created.desc()).paginate(

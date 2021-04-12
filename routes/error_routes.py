@@ -29,7 +29,7 @@ def main_error(error):
             "error_page.html",
             error_code="Internal Exception",
             error=type(error).__name__,
-            error_traceback=str(traceback.format_exc()).replace("\n", "<br>") if configuration.debug_mode else None,
+            error_traceback=str(traceback.format_exc()).replace("<", "/").replace("\n", "<br>") if configuration.debug_mode else None,
             error_description=error
         ),
         StopCodes.ServerError.InternalServerError

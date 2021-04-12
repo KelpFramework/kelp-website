@@ -51,12 +51,12 @@ You can also request a feature! For more info you should read [this](#bug-report
 
 One last thing before you start! Be sure to read the [contribution guidelines]()
 
-|Feature               |Implemented|Planed          |Description                                                                   |
-|----------------------|-----------|----------------|------------------------------------------------------------------------------|
-|Extension Proposition |no         |if requested    |Users are able to propose Extensions which will be tested and maybe released.  |
-|Plugin Voting         |no         |(no date)       |Users can vote if they like a plugin or not. This will affect listing and users will be able to sort by such parameters. |
-|Markdown Overhaul     |no         |ver. 1.1        |Better markdown styles on all pages which use it. |
-|Remember Logins       |no         |if requested    |Add options for remembering user login |
+|Feature               |Implemented|Planed          |State|Description                                                                   |
+|----------------------|-----------|----------------|-----|------------------------------------------------------------------------------|
+|Extension Proposition |❌         |if requested    |❌   |Users are able to propose Extensions which will be tested and maybe released.  |
+|Plugin Voting         |❌         |(no date)       |❌   |Users can vote if they like a plugin or not. This will affect listing and users will be able to sort by such parameters. |
+|Markdown Overhaul     |❌         |✅              |wip  |Better markdown styles on all pages which use it. |
+|Remember Logins       |❌         |if requested    |❌   |Add options for remembering user login |
 
 more features will be added here if requested
 

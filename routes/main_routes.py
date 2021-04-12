@@ -18,19 +18,19 @@ def getting_started():
 
 # legal routes:
 
-@app.route("/imprint")
-def imprint():
-    return redirect(f"https://{application_host}/imprint")
-
-
-@app.route("/privacy")
-def privacy():
-    return redirect(f"https://{application_host}/privacy")
-
-
-@app.route("/community-guidelines")
-def community_guidelines():
-    return redirect(f"https://{application_host}/community-guidelines")
+# @app.route("/imprint")
+# def imprint():
+#     return redirect(f"https://{application_host}/imprint")
+#
+#
+# @app.route("/privacy")
+# def privacy():
+#     return redirect(f"https://{application_host}/privacy")
+#
+#
+# @app.route("/community-guidelines")
+# def community_guidelines():
+#     return redirect(f"https://{application_host}/community-guidelines")
 
 
 web_preloader.preload_code_snippets()

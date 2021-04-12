@@ -1,16 +1,4 @@
 {
-    const top_link = document.querySelector(".link-top")
-    $(top_link).fadeOut(0)
-
-    document.addEventListener("scroll", _=>{
-        if(document.body.scrollTop > 800) $(top_link).fadeIn(200)
-        else $(top_link).fadeOut(200)
-    })
-    top_link.querySelector("button").addEventListener("click", _ => {
-        $("html,body").animate({scrollTop: 0}, 500)
-    })
-}
-{
     document.querySelectorAll(".link-expander-card .link-expander").forEach(elem => {
         elem.innerHTML += '<span class="material-icons">expand_more</span>'
     })
@@ -23,6 +11,7 @@
     document.querySelectorAll("a").forEach(elem => {
         if (elem.target === "_blank") return
         if (elem.hasAttribute("onclick")) return
+        if (elem.hasAttribute("data-toggle")) return
         for(let entry of elem.classList){
             let exclude = ["card-link", "stretched-link", "btn", "list-group-item", "list-group-item-action", "dropdown-item", "nav-link"]
             if(exclude.includes(entry)) return
