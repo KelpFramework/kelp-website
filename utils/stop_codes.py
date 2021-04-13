@@ -1,4 +1,16 @@
 class StopCodes:
+    """
+    Represents a collection of all possible status codes
+    of a server response. They are ordered by category,
+    which makes them more readable for other developers.
+    Instead of writing 200, you could type StopCodes.Success.OK
+    and everyone reading your code will know that the response
+    was handled successfully.
+
+    For more information on the different response codes, visit:
+    https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+    """
+
     class Info:
         Continue = 200
         SwitchingProtocols = 101
