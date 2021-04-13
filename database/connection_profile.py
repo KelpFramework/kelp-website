@@ -26,7 +26,7 @@ class ConnectionProfile:
         :param host:        The host where the database is located. (only mandatory for MySQL)
         :param port:        The port under which the database is accessible. (only mandatory for MySQL)
         :param database:    The name of the database to use for table creation. (mandatory for SQLite and MySQL)
-                            This name should exclude the .sqlite file extension when using SQLite.
+                            This name should include the .sqlite file extension when using SQLite.
         :param username:    The user under which name to log in the database (only mandatory for MySQL)
         :param password:    The password to access the given user (only mandatory for MySQL)
         """
