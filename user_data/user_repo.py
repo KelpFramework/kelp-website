@@ -1,3 +1,9 @@
+"""
+This file acts as repository for all users registered on the site
+and allows easy access to specific user data and management tools
+such as deletion/creation of new users.
+"""
+
 import hashlib
 import datetime
 import configuration
@@ -145,10 +151,21 @@ def get_all_reports(add_user_objects=False):
 
 
 def get_password_hash(user):
+    """
+    Gets the hashed password of the given user.
+
+    :param user: The name of the user to get the hashed password of.
+    :return: The hashed password of the given user.
+    """
     return User.query.filter_by(username=user).first().password
 
 
 def get_all_users():
+    """
+    Compiles a list of all currently registered users.
+
+    :return: A list containing all users.
+    """
     li = []
     for x in User.query.all():
         li.append(x.username)
@@ -156,12 +173,25 @@ def get_all_users():
 
 
 def search_users_by_username(search):
+    """
+    Searches all users that match the given search
+    query as json response string.
+
+    :param search: The search query to check.
+    :return: The JSON response containing the search results.
+    """
     return sql_utils.sql_list_to_json(
         User.query.filter(User.username.ilike(f"%{search}%")).all()
     )
 
 
 def user_exists(username):
+    """
+    Checks if the given user exists.
+
+    :param username: The name of the user to check the existence of.
+    :return: True if the input is not None and the user exists in the database.
+    """
     return User.query.filter_by(username=username).first() is not None
 
 
@@ -177,6 +207,17 @@ def check_user_password(user, passwd):
 
 
 def check_user_passwordhash(user, pwd_hash):
+    """
+    This function is used on login to check if the entered password
+    for a user is equal to the one stored in the database. The database
+    only stores hashed passwords for security reasons, so the password input
+    has to be hashed as well before being able to be processed by this function.
+
+    :param user:        The username to check the password of.
+    :param pwd_hash:    The hashed password to compare with the database.
+    :return: True - if the passwords match and login can be allowed.
+             False - if the passwords differ and login should be disallowed.
+    """
     try:
         userdata = User.query.filter_by(username=user).first()
         if user is not None and userdata.password == pwd_hash:
@@ -187,6 +228,16 @@ def check_user_passwordhash(user, pwd_hash):
 
 
 def get_user_report_by_id(report_id, add_user_object=True):
+    """
+    Gets a user report from the report table by its primary key id.
+
+    :param report_id:           The primary key of the user report you want to get.
+    :param add_user_object:     True (default) - The return value is turned into a dict
+                                    containing the report id as well as the user object
+                                    associated with the requested report.
+                                False - Only the report id is returned.
+    :return: The report id with (optionally) the user object.
+    """
     obj = sql_utils.sql_to_json(
         UserReport.query.filter_by(id=int(report_id)).first()
     )
@@ -198,12 +249,30 @@ def get_user_report_by_id(report_id, add_user_object=True):
 
 
 def switch_admin(user):
+    """
+    Toggles admin mode for the given user.
+    If the user is not an admin, they will be promoted,
+    otherwise they are degraded to a normal user again.
+
+    :param user: The user to toggle admin state of.
+    """
     val = User.query.filter_by(username=user).first()
     val.admin = not val.admin
     sql_utils.commit_db()
 
 
 def suspend_user(user, until, message):
+    """
+    Suspends a user for a given reason and a given amount of time.
+
+    :param user:    The user to suspend.
+    :param until:   If this is -1, the user will be suspended for an infinite
+                    amount of time or until they are unbanned again by an admin.
+                    If this is bigger than 0, this is the time in milliseconds to
+                    suspend this user for.
+    :param message:
+    :return:
+    """
     if int(until) > 0:
         until_fin = datetime.datetime.fromtimestamp(float(until)/1000)
     else:
@@ -215,6 +284,12 @@ def suspend_user(user, until, message):
 
 
 def del_suspend_user(user):
+    """
+    Deletes a suspension for the given user, so that they are unbanned again.
+
+    :param user: The user you want to unban.
+    :return: True - if the process was successful.
+    """
     ban = UserSuspend.query.filter_by(username=user).first()
     db.session.delete(ban)
     db.session.commit()
