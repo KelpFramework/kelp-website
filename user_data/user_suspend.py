@@ -5,6 +5,11 @@ from datetime import datetime
 
 
 class UserSuspend(engine.Model):
+    """
+    Represents a suspended user in the database.
+    The entry will remain in the database until the account suspension ends.
+    """
+
     __tablename__ = "user_suspends"
 
     id = Column(Integer, primary_key=True)

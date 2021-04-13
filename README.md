@@ -34,11 +34,8 @@ You need [Python3](https://www.python.org/downloads/latest) in order to run the 
 * Run the webserver with `python3 main.py`
 
 ### Will there be documentation?
-* The short answer:
-    no
-* The long answer:
-    Yes but only on how to use front-end features.
-    Neither the API, nor any other part will be documented
+Yes, there will be documentation on how to use front-end features. The backend also receives some documentation at the most important points, but please understand that not every function/class will be affected by this. 
+
 * "I want to write some documentation":
     You are all welcome to write documentation on API, etc. 
     However, these will also have to be maintained by you!

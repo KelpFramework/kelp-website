@@ -1,3 +1,12 @@
+"""
+This file is used for the simple Rest API calls made by the backend.
+Generally, the Flask backend communicates with the frontend directly
+by passing the required data to the HTML file when the corresponding
+route is loaded, but some data is retrieved from the JS frontend directly.
+
+This file makes is easier to create API responses to those calls.
+"""
+
 from __init__ import make_response, StopCodes
 
 

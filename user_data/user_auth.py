@@ -22,7 +22,7 @@ def auth_required(func):
 
         if authentication:
             if not get_user_query_object(username).get_suspended():
-                if args is not () or kwargs is not {}:
+                if args != () or kwargs is not {}:
                     return func(*args, **kwargs)
                 return func()
             return render_template("suspended.html")
@@ -41,7 +41,7 @@ def admin_required(func):
             return render_template("login.html", redirect=request.path)
 
         if authentication:
-            if args is not () or kwargs is not {}:
+            if args != () or kwargs is not {}:
                 return func(*args, **kwargs)
             return func()
         abort(StopCodes.ClientError.Unauthorized)

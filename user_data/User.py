@@ -1,3 +1,9 @@
+"""
+Contains the database model for all users registered on the
+website and handles removal of unverified users after a given
+amount of time.
+"""
+
 from sqlalchemy import Column, Integer, String, Boolean, Text, BLOB, DateTime
 from database.database_connection import database_engine as engine
 
@@ -12,6 +18,11 @@ from utils import sql_utils
 
 
 class User(engine.Model):
+    """
+    Represents a new user in the database/the database model for a user.
+
+    """
+
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
@@ -133,9 +144,16 @@ class UserWebQuery:
         return markdown.markdown(UserSuspend.query.filter_by(username=self.username).first().message)
 
 
-# schedules #
+#
+# User Schedules
+#
 
 def _check_for_old_unverified_and_delete():
+    """
+    Iterates all unverified users and deletes their account if
+    it is older than 48 hours.
+    """
+
     users = User.query.filter_by(activated=False).filter(User.created < datetime.datetime.now() - datetime.timedelta(hours=48)).all()
 
     for user in users:
@@ -143,4 +161,5 @@ def _check_for_old_unverified_and_delete():
     engine.session.commit()
 
 
+# deletes accounts older than 48 hours every 12 hours.
 schedule.every(12).hours.do(_check_for_old_unverified_and_delete)
