@@ -1,3 +1,8 @@
+"""
+This file handles the search bars for the page header (general search),
+as well as the search bar used to filter plugins on the plugin main page.
+"""
+
 from user_data import user_repo
 from kelp_modules import kelp_module_repo
 from kelp_plugins import kelp_plugin_repo
