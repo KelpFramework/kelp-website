@@ -8,7 +8,7 @@ secret_key = "put-secret-key-here"                              # flask session 
 
 # The Host and Port settings for the webserver
 web_host = "0.0.0.0"                         # (ignored for apache)
-web_port = 8080                              # (ignored for apache)
+web_port = 80                                # (ignored for apache)
 web_ssl = False                              # (ignored for apache)
 ssl_keyfile = ""                             # (ignored for apache)
 ssl_certfile = ""                            # (ignored for apache)
@@ -54,5 +54,5 @@ mailing_system_email_password = "secret"
 mailing_system_email_server = "smtp.unknown.domain"
 mailing_system_email_port = 465  # Dont change! For some reason only this works?!
 
-path_kelp_modules = "path/to/modules"
-path_kelp_plugins = "path/to/plugins"
+path_kelp_modules = "E:\SWC\modules"
+path_kelp_plugins = "E:\SWC\plugins"

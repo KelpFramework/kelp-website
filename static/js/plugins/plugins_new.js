@@ -23,19 +23,19 @@ const accept_2 = document.querySelector("#check_2")
         if(filename !== ""){
             if(file.size > 5000000){
                 e.preventDefault()
-                document.querySelector(".custom-file-label").classList.remove("selected")
-                document.querySelector(".custom-file-label").innerText = "No file chosen"
+                document.querySelector(".icon-label").classList.remove("selected")
+                document.querySelector(".icon-label").innerText = "No file chosen"
                 document.querySelector(".custom-file-preview").src = "/static/img/no_img.png"
                 alert("Maximum filesize is 5 MB")
                 e.target.value = ""
             }else{
-                document.querySelector(".custom-file-label").classList.add("selected")
-                document.querySelector(".custom-file-label").innerText = `Selected: ${filename}`
+                document.querySelector(".icon-label").classList.add("selected")
+                document.querySelector(".icon-label").innerText = `Selected: ${filename}`
                 reader.readAsDataURL(file)
             }
         }else{
-            document.querySelector(".custom-file-label").classList.remove("selected")
-            document.querySelector(".custom-file-label").innerText = "No file chosen"
+            document.querySelector(".icon-label").classList.remove("selected")
+            document.querySelector(".icon-label").innerText = "No file chosen"
         }
 
         reader.onload = e => {
@@ -53,19 +53,19 @@ const accept_2 = document.querySelector("#check_2")
         if(filename !== ""){
             if(file.size > 5000000){
                 e.preventDefault()
-                document.querySelector(".custom-file-label").classList.remove("selected")
-                document.querySelector(".custom-file-label").innerText = "No file chosen"
+                document.querySelector(".banner-label").classList.remove("selected")
+                document.querySelector(".banner-label").innerText = "No file chosen"
                 document.querySelector(".jumbotron").style.backgroundImage = "none"
                 alert("Maximum filesize is 5 MB")
                 e.target.value = ""
             }else{
-                document.querySelector(".custom-file-label").classList.add("selected")
-                document.querySelector(".custom-file-label").innerText = `Selected: ${filename}`
+                document.querySelector(".banner-label").classList.add("selected")
+                document.querySelector(".banner-label").innerText = `Selected: ${filename}`
                 reader.readAsDataURL(file)
             }
         }else{
-            document.querySelector(".custom-file-label").classList.remove("selected")
-            document.querySelector(".custom-file-label").innerText = "No file chosen"
+            document.querySelector(".banner-label").classList.remove("selected")
+            document.querySelector(".banner-label").innerText = "No file chosen"
             document.querySelector(".jumbotron").style.backgroundImage = "none"
         }
 

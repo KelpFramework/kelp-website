@@ -204,7 +204,7 @@ img[src$=".gif"], img[src$=".png"] {
 }
 ::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 25px;
+    /*border-radius: 25px;*/
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #555;

@@ -16,10 +16,11 @@
             let exclude = ["card-link", "stretched-link", "btn", "list-group-item", "list-group-item-action", "dropdown-item", "nav-link"]
             if(exclude.includes(entry)) return
         }
-        if(elem.href.includes(`${location.host}${location.pathname}#`)){
+        if(elem.href.includes(`#`)){
             elem.addEventListener("click", e => {
                 e.preventDefault()
                 let linked = document.getElementById(elem.href.split("#").pop())
+                console.log($($(elem).attr("href")))
                 $("html, body").animate({ scrollTop: $($(elem).attr("href")).offset().top-90 }, 500, _ => {
                     linked.style.transition = "color .3s"
                     linked.classList.add("text-warning")

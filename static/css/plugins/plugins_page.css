@@ -74,11 +74,6 @@ textarea.form-control{
 .description-preview-div pre{
     overflow-y: hidden;
 }
-code{
-    padding: 5px;
-    color: #e83e8c !important;
-    background-color: #373c47 !important;
-}
 #new-plugin-form .nav{
     border-bottom: gray solid 1px;
 }

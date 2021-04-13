@@ -1,5 +1,6 @@
 SQLAlchemy
 Flask
+flask_sqlalchemy
 Markdown
 requests
 Werkzeug
