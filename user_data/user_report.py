@@ -5,6 +5,13 @@ from datetime import datetime
 
 
 class UserReport(engine.Model):
+    """
+    Represents a user report inside the database.
+    A report can be issued when a user posted inappropriate content.
+    It is then reviewed by an admin who decides whether to suspend the
+    user's account or simply delete the report.
+    """
+
     __tablename__ = "users_reports"
 
     id = Column(Integer, primary_key=True)
