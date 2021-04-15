@@ -50,7 +50,7 @@ or ideas that could be implemented.
 
 You can also request a feature! For more info you should read [this](#bug-reports-and-feature-requests) section.
 
-One last thing before you start! Be sure to read the [contribution guidelines]()
+One last thing before you start! Be sure to read the [contribution guidelines](./CONTRIBUTING.md)
 
 |Feature               |Implemented|Planed          |State|Description                                                                   |
 |----------------------|-----------|----------------|-----|------------------------------------------------------------------------------|
