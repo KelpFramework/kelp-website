@@ -60,8 +60,7 @@
 * ~~non-verified accounts must be deleted after a while~~
 * *non-square pictures deformed*
 * ~~filename for plugins leaves box on some browsers~~
-* clear cookies on deny
-* newline being translated to markdown
+* ~~clear cookies on deny~~
 
 
 ### Suggestions

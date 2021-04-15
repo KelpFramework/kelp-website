@@ -55,8 +55,7 @@
         })
         modal.FunctionButton("cl_btn2", "Leave this page", "btn btn-danger", "click", _ => {
             modal.destroy()
-            document.head.innerHTML = ""
-            document.body.innerText = "You may close this tab now."
+            location.href = "/clear-cookies/html"
         })
         modal.show()
     })
