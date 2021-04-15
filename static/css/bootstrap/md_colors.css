@@ -4,3 +4,10 @@
     --color-markdown-table-border: #3b434b;
     --color-markdown-table-tr-border: #272c32;
 }
+
+.hljs-meta{
+    color: #4ec9b0;
+}
+.hljs-title{
+    color: #dcdcaa;
+}

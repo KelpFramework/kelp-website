@@ -1,5 +1,5 @@
-@import "../bootstrap/md_colors.css";
 @import "../modules/vs2015.min.css";
+@import "../bootstrap/md_colors.css";
 
 code{
     padding: .2em .4em;
