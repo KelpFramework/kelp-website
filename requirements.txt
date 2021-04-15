@@ -5,3 +5,4 @@ Markdown
 requests
 Werkzeug
 schedule
+flask_sqlalchemy
