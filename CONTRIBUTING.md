@@ -23,6 +23,7 @@ Lastly, if you want, you can also add documentation to all parts of the code and
 - To make development easier for other developers, every contributor should follow the same conventions.
 - Please don't add any new Python modules if not absolutely necessary.
 - Keep a logical and ordered file structure.
+- It is recommended to follow the python pep8 style conventions
 
 
 
