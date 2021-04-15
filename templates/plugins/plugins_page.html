@@ -80,10 +80,10 @@
                         </a>
                     {% endif %}
                 </div>
-                <div class="rounded p-2 mt-2 older-releases">
-                    <h6>Older Release</h6>
+                <div class="rounded p-2 mt-2 older-releases {{ "link-expander-card" if py.len(files[1:]) > 4 }}">
+                    <h6 class="{{ "cursor-pointer link-expander" if py.len(files[1:]) > 4 }}" {{ "data-toggle=collapse" if py.len(files[1:]) > 4 }} data-target="#older-rels">Older Releases <small>({{ py.len(files[1:]) }})</small></h6>
                     {% if py.len(files[1:]) > 0 %}
-                        <ul class="list-unstyled">
+                        <ul id="older-rels" class="list-unstyled {{ "collapse" if py.len(files[1:]) > 4 }}">
                             {% for file in files[1:] %}
                                 <li>
                                     {% if file.type == "link" %}
