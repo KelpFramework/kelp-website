@@ -61,6 +61,7 @@
 * *non-square pictures deformed*
 * ~~filename for plugins leaves box on some browsers~~
 * clear cookies on deny
+* newline being translated to markdown
 
 
 ### Suggestions
@@ -78,7 +79,8 @@
 * ~~put picture above on index~~
 * *force special characters on registration*
 * *remember logins*
-* make code examples editable in file
+* ~~make code examples editable in file~~
+* fix markdown in live preview
 
 
 ### Optimisation

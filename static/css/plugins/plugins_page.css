@@ -1,6 +1,6 @@
 .bg-apply{
     min-height: 200px;
-    background-color: transparent;
+    background-color: var(--primary);
     background-position: 0;
     text-align: center;
     background-size: cover;
