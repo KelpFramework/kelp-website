@@ -61,6 +61,8 @@ One last thing before you start! Be sure to read the [contribution guidelines](.
 
 more features will be added here if requested
 
+You can also have a look at the [Trello board](https://trello.com/b/NWp61ATy/kelp-website-development)!
+
 ---
 
 ## Bug reports and Feature requests
