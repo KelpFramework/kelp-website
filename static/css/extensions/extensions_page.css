@@ -23,14 +23,26 @@
     width: 70vw;
     margin-left: 3.5vw;
     margin-right: 2.5vw;
+    word-wrap: anywhere;
+    word-break: break-all;
 }
 .half.half-right{
     height: 100%;
     width: 20vw;
     min-height: 45vh;
+    position: sticky;
+    top: 100px;
+}
+.half.half-right .older-releases ul{
+    overflow-y: auto;
+    max-height: 30vh;
 }
 
-a i.material-icons{
+.btn-fixed{
+    height: 40px;
+}
+
+a i.material-icons, .modal-hold button i.material-icons, .older-releases .material-icons{
     vertical-align: middle;
     line-height: 0 !important;
     position: relative;
@@ -45,6 +57,9 @@ a i.material-icons{
     color: gray;
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
 
 @media screen and (max-width: 481px){
     .bg-apply{

@@ -25,17 +25,17 @@
                 <div class="bg-success rounded p-2">
                     <h6>Latest Release &nbsp; <small>({{ files[0].modified.strftime("%d.%m.%Y %H:%M:%S") }})</small></h6>
                     <a class="ml-2 text-black-50" href="/extensions/{{ module.uuid }}/download/{{ files[0].name }}">
-                        <i class="material-icons">download</i> {{ files[0].name }}
+                        <i class="material-icons">download</i> {{ py.utils.string.shorten_to(files[0].name, 25, True) }}
                     </a>
                 </div>
-                <div class="rounded p-2 mt-2 older-releases">
-                    <h6>Older Release</h6>
+                <div class="rounded p-2 mt-2 older-releases {{ "link-expander-card" if py.len(files[1:]) > 4 }}">
+                    <h6 class="{{ "cursor-pointer link-expander" if py.len(files[1:]) > 4 }}" {{ "data-toggle=collapse" if py.len(files[1:]) > 4 }} data-target="#older-rels">Older Release <small>({{ py.len(files[1:]) }})</small></h6>
                     {% if py.len(files[1:]) > 0 %}
-                        <ul class="list-unstyled">
+                        <ul id="older-rels" class="list-unstyled {{ "collapse" if py.len(files[1:]) > 4 }}">
                             {% for file in files[1:] %}
                                 <li>
                                     <a class="ml-2 text-older-rel" title="last modified: {{ file.modified.strftime("%d.%m.%Y %H:%M:%S") }}" href="/extensions/{{ module.uuid }}/download/{{ file.name }}">
-                                        <i class="material-icons">download</i> {{ file.name }}
+                                        <i class="material-icons">download</i> {{ py.utils.string.shorten_to(file.name, 25, True) }}
                                     </a>
                                 </li>
                             {% endfor %}
