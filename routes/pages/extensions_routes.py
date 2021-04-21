@@ -27,6 +27,24 @@ def extensions_page(uuid):
     )
 
 
+@app.route("/extensions/<uuid>/description")
+def extension_description(uuid):
+    return api_utils.make_response(
+        kelp_module_repo.get_module_by_uuid(
+            uuid
+        ).get("description")
+    )
+
+
+@app.route("/extensions/<uuid>/download/latest")
+def extension_download_latest(uuid):
+    return send_file(
+        kelp_module_repo.get_latest_module_file(uuid),
+        mimetype="file",
+        as_attachment=True
+    )
+
+
 @app.route("/extensions/<uuid>/download/<filename>")
 def extension_download_file(uuid, filename):
     return send_file(

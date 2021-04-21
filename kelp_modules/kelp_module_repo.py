@@ -9,8 +9,8 @@ from .kelp_module import KelpModule
 from werkzeug.utils import secure_filename
 
 
-def create_module(name, creator, short_description, description, picture, pinned):
-    module = KelpModule(name, creator, short_description, description, picture.stream.read(), pinned)
+def create_module(ident, name, creator, short_description, description, picture, pinned):
+    module = KelpModule(ident, name, creator, short_description, description, picture.stream.read(), pinned)
     os.makedirs(os.path.join(configuration.path_kelp_modules, module.uuid))
     sql_utils.append_to_db(
         module,
@@ -128,6 +128,12 @@ def get_module_file(uuid, filename):
     KelpModule.query.filter_by(uuid=uuid).first().downloads += 1
     sql_utils.commit_db()
     return os.path.join(configuration.path_kelp_modules, uuid, filename)
+
+
+def get_latest_module_file(uuid):
+    KelpModule.query.filter_by(uuid=uuid).first().downloads += 1
+    sql_utils.commit_db()
+    return os.path.join(configuration.path_kelp_modules, uuid, get_module_file_list(uuid)[0].get("name"))
 
 
 def remove_user_content(username, auto_commit=True):

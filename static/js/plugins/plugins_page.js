@@ -1,6 +1,6 @@
 {
     document.querySelector(".bg-apply").style.backgroundImage = `url(/plugins?banner=${plugin_uuid})`
-    hljs.initHighlightingOnLoad()
+    hljs.highlightAll()
 }
 
 let outdated = false

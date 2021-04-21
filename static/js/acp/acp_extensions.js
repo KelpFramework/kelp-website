@@ -105,6 +105,7 @@ function new_extension(){
     modal.Custom(`
         <div>
             <form id="form_22231" method="post" enctype="multipart/form-data" action="/acp/extensions">
+                <input type="text" class="form-control" name="id" placeholder="id" pattern="[A-Za-z0-9-_]" required> <br>
                 <input type="text" class="form-control" name="name" placeholder="name" required> <br>
                 <input type="text" class="form-control" name="short_desc" placeholder="short description" required> <br>
                 <textarea class="form-control" type="text" name="desc" placeholder="description" required></textarea> <br>
@@ -123,18 +124,20 @@ function new_extension(){
         `form="form_22231"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_22231")
+        let id = wrapper.querySelector("input[name='id']").value
         let name = wrapper.querySelector("input[name='name']").value
         let short_desc = wrapper.querySelector("input[name='short_desc']").value
         let desc = wrapper.querySelector("textarea").value
         let pict = wrapper.querySelector("input[name='pict']")
         let pin = wrapper.querySelector("input[name='pin']")
 
-        if(name!==""&&short_desc!==""&&desc!==""&&pict.files.length===1){
+        if(id.match("[A-Za-z0-9-_]")&&name!==""&&short_desc!==""&&desc!==""&&pict.files.length===1){
             e.preventDefault()
 
             let data = new FormData()
             let request = new XMLHttpRequest()
 
+            data.append("id", id)
             data.append("name", name)
             data.append("short_desc", short_desc)
             data.append("desc", desc)

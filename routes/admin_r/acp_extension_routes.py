@@ -10,6 +10,7 @@ def acp_extensions():
     if request.method == "POST":
         if "create_module" in request.form:
             kelp_module_repo.create_module(
+                request.form.get("id"),
                 request.form.get("name"),
                 session.get("username"),
                 request.form.get("short_desc"),

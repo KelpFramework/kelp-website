@@ -14,19 +14,19 @@ class KelpModule(engine.Model):
     description = Column(Text(65000))
     short_description = Column(String(512))
     picture = Column(BLOB)
-    uuid = Column(String(36), unique=True)
+    uuid = Column(String(256), unique=True)
     downloads = Column(Integer, default=0)
     up_votes = Column(Integer, default=0)
     down_votes = Column(Integer, default=0)
     created = Column(DateTime)
     pinned = Column(Boolean)
 
-    def __init__(self, module_name, creator, short_description, description, picture, pinned=False):
+    def __init__(self, ident, module_name, creator, short_description, description, picture, pinned=False):
         self.module_name = module_name
         self.creator = creator
         self.short_description = short_description
         self.description = description
         self.picture = picture
-        self.uuid = str(uuid.uuid4())
+        self.uuid = ident
         self.created = datetime.now()
         self.pinned = pinned

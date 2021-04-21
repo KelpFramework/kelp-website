@@ -43,5 +43,5 @@ function scrollToElement(pageElement) {
     }
 }
 {
-    hljs.initHighlightingOnLoad()
+    hljs.highlightAll()
 }

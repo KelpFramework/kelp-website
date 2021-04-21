@@ -152,6 +152,15 @@ def plugin_report(uuid):
     return render_template("plugins/plugins_report.html", plugin=kelp_plugin_repo.get_plugin_by_uuid(uuid))
 
 
+@app.route("/plugins/<uuid>/description")
+def plugin_description(uuid):
+    return api_utils.make_response(
+        kelp_plugin_repo.get_plugin_by_uuid(
+            uuid
+        ).get("description")
+    )
+
+
 @app.route("/plugins/<uuid>/download/<filename>")
 def plugin_download_file(uuid, filename):
     return send_file(
