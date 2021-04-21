@@ -105,7 +105,7 @@ function new_extension(){
     modal.Custom(`
         <div>
             <form id="form_22231" method="post" enctype="multipart/form-data" action="/acp/extensions">
-                <input type="text" class="form-control" name="id" placeholder="id" pattern="[A-Za-z0-9-_]" required> <br>
+                <input type="text" class="form-control" name="id" placeholder="id" pattern="[A-Za-z0-9-_]" title="Allowed: A-Z a-z 0-9 - _" required> <br>
                 <input type="text" class="form-control" name="name" placeholder="name" required> <br>
                 <input type="text" class="form-control" name="short_desc" placeholder="short description" required> <br>
                 <textarea class="form-control" type="text" name="desc" placeholder="description" required></textarea> <br>

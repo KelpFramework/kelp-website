@@ -9,8 +9,7 @@ from utils import web_stats
 def acp_index():
     return render_template(
         "acp/acp_index.html",
-        stats=web_stats.Stats,
-        todo=web_stats.get_todo_md()
+        stats=web_stats.Stats
     )
 
 
