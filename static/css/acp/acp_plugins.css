@@ -18,17 +18,23 @@ textarea.form-control{
     border-right: solid 1px #111;
     overflow-y: hidden;
 }
-#plugin-list{
+.plugins-list-wrapper{
     height: calc(100vh - 85px - 130px);
     display: inherit !important;
     flex-wrap: inherit !important;
+    overflow-y: hidden;
+}
+.plugins-list{
+    width: 100%;
+    display: block;
+    height: 50%;
     overflow-y: auto;
 }
-#plugin-list .spinner-border{
+.plugins-list .spinner-border{
     margin-top: 25vh;
     margin-left: 5vw;
 }
-#plugin-list .plugin-btn{
+.plugins-list .plugin-btn{
     background-color: transparent;
     color: white;
     width: 100%;
@@ -37,22 +43,22 @@ textarea.form-control{
     padding: 5px;
     transition: all .2s;
 }
-#plugin-list .plugin-btn:hover{
+.plugins-list .plugin-btn:hover{
     background-color: #555;
     padding-left: 30px;
 }
-#plugin-list .plugin-btn.active{
+.plugins-list .plugin-btn.active{
     border: none;
     outline: none;
     background-color: #4CAF50;
     color: white;
     padding-left: 30px;
 }
-#plugin-list .plugin-btn small{
+.plugins-list .plugin-btn small{
     color: var(--info);
     transform: scale(0.65) rotate(45deg);
 }
-#plugin-list .plugin-btn.active small{
+.plugins-list .plugin-btn.active small{
     color: var(--white);
 }
 .btn-nostyle{

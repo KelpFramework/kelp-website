@@ -1,6 +1,7 @@
 let page = ""
 
 const plugin_list = document.querySelector("#plugin-list")
+const plugin_report_list = document.querySelector("#plugin-report-list")
 const plugin_content = document.querySelector("#plugin-content")
 const plugin_content_template = document.querySelector("#plugin_content_template")
 const plugin_report_content_template = document.querySelector("#plugin_report_content_template")
@@ -10,14 +11,14 @@ const tag_list = document.querySelector(".tag-list")
 
 const plugin_list_template = `
 <li class="searchable" data-uuid="{{plugin_uuid}}">
-    <button class="plugin-btn" data-toggle="tab" id="plugin-btn-{{plugin_id}}">
+    <button class="plugin-btn" data-toggle="tab" data-type="plugin" id="plugin-btn-{{plugin_id}}">
         {{plugin_name}}
     </button>
 </li>
 `
 const plugin_report_list_template = `
 <li class="searchable" data-uuid="{{plugin_uuid}}">
-    <button class="plugin-btn bg-danger" data-toggle="tab" id="report-btn-{{report_id}}">
+    <button class="plugin-btn bg-danger" data-toggle="tab" data-type="report" id="plugin-btn-{{report_id}}">
         {{plugin_name}}
     </button>
 </li>
@@ -87,22 +88,19 @@ function load_plugins(callback){
                     .replaceAll("{{plugin_uuid}}", plugin.uuid)
                     .replaceAll("{{plugin_name}}", plugin.plugin_name)
                 setTimeout(()=>{
-                        plugin_list.querySelector(`#plugin-btn-${plugin.id}`).addEventListener("click", ()=>{
+                        plugin_list.querySelector(`#plugin-btn-${plugin.id}[data-type='plugin']`).addEventListener("click", ()=>{
                             if(plugin.id !== page) {
+                                document.querySelectorAll(`.plugin-btn`).forEach(elem => {
+                                    elem.classList.remove("active")
+                                })
                                 plugin_content.innerHTML = "<div class='spinner-border'></div>"
                                 setContent(plugin)
                                 page = plugin.id
                             }
                     })
                 }, 400)
-                $("#user-search").on("keyup", function() {
-                    let value = $(this).val().toLowerCase()
-                    $("#plugin-list li.searchable").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    })
-                })
             }
-            callback()
+            callback?.()
         }
     })
 }
@@ -110,27 +108,24 @@ function load_plugins_reports(callback){
     $.ajax({
         url: "?get_plugins_reports",
         success: (response) => {
-            plugin_list.innerHTML += `<hr>`
+            plugin_report_list.innerHTML = ``
             for(let plugin_report of response.data){
-                plugin_list.innerHTML += plugin_report_list_template
+                plugin_report_list.innerHTML += plugin_report_list_template
                     .replaceAll("{{report_id}}", plugin_report.id)
                     .replaceAll("{{plugin_uuid}}", plugin_report.plugin_uuid)
                     .replaceAll("{{plugin_name}}", plugin_report.plugin.plugin_name)
                 setTimeout(()=>{
-                        plugin_list.querySelector(`#report-btn-${plugin_report.id}`).addEventListener("click", ()=>{
+                        plugin_report_list.querySelector(`#plugin-btn-${plugin_report.id}[data-type='report']`).addEventListener("click", ()=>{
                             if(`${plugin_report.plugin_uuid}___${plugin_report.id}` !== page) {
+                                document.querySelectorAll(`.plugin-btn`).forEach(elem => {
+                                    elem.classList.remove("active")
+                                })
                                 plugin_content.innerHTML = "<div class='spinner-border'></div>"
                                 setContent({uuid: plugin_report.plugin_uuid}, true, plugin_report)
                                 page = `${plugin_report.plugin_uuid}___${plugin_report.id}`
                             }
                     })
                 }, 200)
-                $("#user-search").on("keyup", function() {
-                    let value = $(this).val().toLowerCase()
-                    $("#plugin-list li.searchable").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    })
-                })
             }
             callback?.()
         }
@@ -139,12 +134,12 @@ function load_plugins_reports(callback){
 
 
 function load_all() {
-    load_plugins(
-        load_plugins_reports
-    )
-    // load_plugins_reports(
-    //     load_plugins
+    // load_plugins(
+    //     load_plugins_reports
     // )
+    load_plugins_reports(
+        load_plugins
+    )
     load_tags()
 }
 {

@@ -225,9 +225,10 @@ def get_all_plugins(start_at=0, per_page=12):
 
 
 def get_latest_plugins(age_days=5):
+    t = time.time() - age_days * 24 * 60 * 60
     return sql_utils.sql_list_to_json(
         KelpPlugin.query.filter(
-            KelpPlugin.created > (datetime.datetime.now() - datetime.timedelta(days=age_days))
+            KelpPlugin.created > t
         ).order_by(KelpPlugin.created.asc()).all()
     )
 

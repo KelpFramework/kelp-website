@@ -9,15 +9,17 @@
 
         <div class="col-8 d-inline-flex">
             <div id="plugin-nav">
-                <h5 class="p-3">Plugin Reports</h5>
-                <div>
-                    <div class="mb-2">
-                        <input type="search" class="form-control bg-dark text-light" placeholder="Search..." id="user-search">
-                    </div>
+                <h5 class="p-3">Plugins</h5>
+                <div class="plugins-list-wrapper">
+                    <b>Plugin Reports</b>
+                    <ul id="plugin-report-list" class="nav plugins-list">
+                        <li><div class="spinner-border"></div></li>
+                    </ul>
+                    <b>Latest Plugins (5d)</b>
+                    <ul id="plugin-list" class="nav plugins-list">
+                        <li><div class="spinner-border"></div></li>
+                    </ul>
                 </div>
-                <ul id="plugin-list" class="nav">
-                    <li><div class="spinner-border"></div></li>
-                </ul>
             </div>
             <div class="tab-content" id="plugin-content"></div>
         </div>
@@ -39,10 +41,10 @@
 
 
 
-    <div id="plugin_content_template" hidden>
+    <template id="plugin_content_template">
         <div class="m-3 p-3 bg-dark">
             <div class="media">
-                <img src="/plugins?picture=plugin_uuid" height="55px" class="mr-2">
+                <img src="/plugins?icon=plugin_uuid" height="55px" class="mr-2" alt="">
                 <h4>plugin_name <small><br>plugin_uuid</small></h4>
             </div>
             <hr>
@@ -73,11 +75,11 @@
                 <button class="btn btn-danger" onclick="delete_plugin('plugin_uuid')">Delete Plugin</button>
             </div>
         </div>
-    </div>
-    <div id="plugin_report_content_template" hidden>
+    </template>
+    <template id="plugin_report_content_template">
         <div class="m-3 p-3 bg-dark">
             <div class="media">
-                <img src="/plugins?picture=plugin_uuid" height="55px" class="mr-2">
+                <img src="/plugins?icon=plugin_uuid" height="55px" class="mr-2" alt="">
                 <h4>plugin_name <small><br>plugin_uuid</small></h4>
             </div>
             <hr>
@@ -117,7 +119,7 @@
                 <button class="btn btn-danger" onclick="delete_reports('plugin_uuid')">Delete All Reports</button>
             </div>
         </div>
-    </div>
+    </template>
 
     <script src="/static/js/acp/acp_plugins.js"></script>
 {% endblock %}
