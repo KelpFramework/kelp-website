@@ -65,6 +65,9 @@ code{
     color: var(--color-text-tertiary);
     border-left: .25em solid var(--color-markdown-blockquote-border);
 }
+.markdown-container blockquote p, .markdown-container blockquote h1, .markdown-container blockquote h2, .markdown-container blockquote h3, .markdown-container blockquote h4, .markdown-container blockquote h5, .markdown-container blockquote h6, .markdown-container blockquote ul li *, .markdown-container blockquote ol li *{
+    color: inherit;
+}
 .markdown-container table {
     display: block;
     width: 100%;

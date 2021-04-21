@@ -494,7 +494,7 @@ function edit_tags(uuid, current){
 }
 function edit_description(uuid, orig_obj){
     let current = document.querySelector(orig_obj).innerHTML
-    let modal = new Modal("modal-wrapper", {heading: "Edit Description"}, "large")
+    let modal = new Modal("modal-wrapper", {heading: "Edit Description"}, "extralarge")
     modal.Custom(`
         <div id="new-plugin-form">
             <ul class="nav nav-tabs" role="tablist">
@@ -510,7 +510,7 @@ function edit_description(uuid, orig_obj){
                     <textarea name="plugin_description" placeholder="Markdown or HTML" class="form-control" required>${current}</textarea>
                 </form>
                 <div id="description-preview" class="container tab-pane">
-                    <div class="description-preview-div"></div>
+                    <div class="description-preview-div markdown-container"></div>
                     <small>(This preview may not be entirely accurate)</small>
                 </div>
             </div>
@@ -522,12 +522,15 @@ function edit_description(uuid, orig_obj){
             html:         true,
             xhtmlOut:     false,
             breaks:       true,
-            langPrefix:   'language-',
+            langPrefix:   'lang-',
             typographer:  false,
             quotes: '“”‘’',
             highlight: function (/*str, lang*/) { return ''; }
         })
         document.querySelector(".description-preview-div").innerHTML = md.render(e.target.value)
+        document.querySelector(".description-preview-div").querySelectorAll("pre code").forEach(elem => {
+            hljs.highlightElement(elem)
+        })
     }
     document.querySelector("textarea[name='plugin_description']").addEventListener("change", change_ev)
     change_ev({target:document.querySelector("textarea[name='plugin_description']")})

@@ -80,12 +80,15 @@ const accept_2 = document.querySelector("#check_2")
             html:         true,
             xhtmlOut:     false,
             breaks:       true,
-            langPrefix:   'language-',
+            langPrefix:   'lang-',
             typographer:  false,
             quotes: '“”‘’',
             highlight: function (/*str, lang*/) { return ''; }
         })
         plugin_description_preview.innerHTML = md.render(e.target.value)
+        plugin_description_preview.querySelectorAll("pre code").forEach(elem => {
+            hljs.highlightElement(elem)
+        })
     })
 }
 
