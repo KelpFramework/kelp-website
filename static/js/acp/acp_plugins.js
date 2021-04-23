@@ -30,6 +30,11 @@ function setContent(plugin_parent, report=false, report_content=null){
         plugin_content.innerHTML = ""
         return
     }
+    function highlightMarkdown(){
+        plugin_content.querySelectorAll(`#md-${plugin_parent.uuid} pre code`).forEach(elem => {
+            hljs.highlightElement(elem)
+        })
+    }
     if(report){
         $.ajax({
             url: `?get_plugin=${plugin_parent.uuid}`,
@@ -45,14 +50,15 @@ function setContent(plugin_parent, report=false, report_content=null){
                     .replaceAll("plugin_id", plugin.id)
                     .replaceAll("plugin_uuid", plugin.uuid)
                     .replaceAll("plugin_name", plugin.plugin_name)
-                    .replaceAll("plugin_created", new Date(plugin.created).toLocaleString("de-DE"))
+                    .replaceAll("plugin_created", new Date(plugin.created*1000).toLocaleString("de-DE"))
                     .replaceAll("plugin_creator", plugin.creator)
                     .replaceAll("plugin_downloads", plugin.downloads)
                     .replaceAll("plugin_short_description", plugin.short_description)
                     .replaceAll("plugin_description_md", plugin.description_md)
                     .replaceAll("plugin_description", plugin.description.replaceAll("\n", "<br>"))
                     .replaceAll("plugin_tags", plugin.tags)
-                    .replaceAll("plugin_updated", new Date(plugin.updated).toLocaleString("de-DE"))
+                    .replaceAll("plugin_updated", new Date(plugin.updated*1000).toLocaleString("de-DE"))
+                highlightMarkdown()
             }
         })
     }else{
@@ -64,14 +70,15 @@ function setContent(plugin_parent, report=false, report_content=null){
                     .replaceAll("plugin_id", plugin.id)
                     .replaceAll("plugin_uuid", plugin.uuid)
                     .replaceAll("plugin_name", plugin.plugin_name)
-                    .replaceAll("plugin_created", new Date(plugin.created).toLocaleString("de-DE"))
+                    .replaceAll("plugin_created", new Date(plugin.created*1000).toLocaleString("de-DE"))
                     .replaceAll("plugin_creator", plugin.creator)
                     .replaceAll("plugin_downloads", plugin.downloads)
                     .replaceAll("plugin_short_description", plugin.short_description)
                     .replaceAll("plugin_description_md", plugin.description_md)
                     .replaceAll("plugin_description", plugin.description.replaceAll("\n", "<br>"))
                     .replaceAll("plugin_tags", plugin.tags)
-                    .replaceAll("plugin_updated", new Date(plugin.updated).toLocaleString("de-DE"))
+                    .replaceAll("plugin_updated", new Date(plugin.updated*1000).toLocaleString("de-DE"))
+                highlightMarkdown()
             }
         })
     }

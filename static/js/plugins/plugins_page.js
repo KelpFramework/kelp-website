@@ -449,9 +449,11 @@ function edit_tags(uuid, current){
                 </div>
             `)
 
-            for(let curr_tag of current.split(",")){
-                let tag_link = "tg-toggle_" + curr_tag
-                document.querySelector(`input[data-toggle-for="${tag_link}"]`).checked = true
+            if(current){
+                for(let curr_tag of current.split(",")){
+                    let tag_link = "tg-toggle_" + curr_tag
+                    document.querySelector(`input[data-toggle-for="${tag_link}"]`).checked = true
+                }
             }
 
             modal.show()

@@ -24,7 +24,7 @@
     </div>
 
 
-    <div id="module-content-template" hidden>
+    <template id="module-content-template">
 
         <div class="module-options m-3 p-3">
             <div class="media p-3 module-info-sec">
@@ -103,8 +103,8 @@
                         </div>
                         <div class="collapse" id="collapse_one_3" data-parent="#opt-acc_module_id">
                             <div class="card-body">
-                                <div class="float-left">
-                                    <div class="non-md-module_uuid" hidden>module_description</div>
+                                <template class="non-md-module_uuid">module_description</template>
+                                <div class="float-left markdown-container">
                                     module_description_md
                                     <br><br>
                                 </div>
@@ -119,7 +119,7 @@
             </div>
         </div>
 
-    </div>
+    </template>
 
 
     <script>

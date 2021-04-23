@@ -60,6 +60,9 @@ function setContent(module_parent, refresh=false){
                 e.target.parentElement.querySelector(".link-expander-card .link-expander span.material-icons").classList.toggle("expanded")
             }
             $(".link-expander-card .collapse").on("show.bs.collapse", toggle).on("hide.bs.collapse", toggle)
+            module_content.querySelectorAll(`div[data-parent="#opt-acc_${module.id}"] div.card-body .markdown-container pre code`).forEach(elem => {
+                hljs.highlightElement(elem)
+            })
         }
     })
 }
