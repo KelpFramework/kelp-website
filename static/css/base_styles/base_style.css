@@ -130,6 +130,7 @@ body *{
 .link-expander span.material-icons{
     transition: all .3s;
     user-select: none;
+    -webkit-user-select: none;
 }
 .link-expander span.material-icons.expanded{
     transform: rotate(180deg);
