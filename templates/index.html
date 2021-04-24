@@ -109,13 +109,9 @@
                         <span class="card-link link-expander">NPCs</span>
                     </div>
                     <div id="collapse-npc" class="collapse card-body p-0" data-parent="#accordion">
-                        <div class="row p-3">
-
-    <pre class="code-editor col">{{ web_loader.code_snipptes.NpcExample.get_content()|safe }}</pre>
-
-                            <div class="col">
-                                <img src="/static/img/pages/index/example_showcase_npc.gif" alt="">
-                            </div>
+                        <div class="p-3">
+                            <video src="/static/img/pages/index/example_showcase_npc.mp4" class="p-1 w-100" muted loop autoplay></video>
+    <pre class="code-editor">{{ web_loader.code_snipptes.NpcExample.get_content()|safe }}</pre>
                         </div>
                     </div>
                 </div>
@@ -126,7 +122,7 @@
                     </div>
                     <div id="collapse-inv" class="collapse card-body p-0" data-parent="#accordion">
                         <div class="p-3">
-                            <img class="w-100 p-lg-4 p-md-2 p-sm-0" src="/static/img/pages/index/example_showcase_inv.gif" alt="">
+                            <video src="/static/img/pages/index/example_showcase_inv.mp4" class="p-lg-4 p-md-2 p-sm-0 w-100" muted loop autoplay></video>
     <pre class="code-editor">{{ web_loader.code_snipptes.InventoryExample.get_content()|safe }}</pre>
                         </div>
                     </div>
@@ -138,10 +134,32 @@
                     </div>
                     <div id="collapse-chat" class="collapse card-body p-0" data-parent="#accordion">
                         <div class="p-3">
-
-                                <img class="w-100 p-lg-4 p-md-2 p-sm-0" src="/static/img/pages/index/example_showcase_chat.png" alt="">
-
+                            <img class="w-100 p-lg-4 p-md-2 p-sm-0" src="/static/img/pages/index/example_showcase_chat.png" alt="">
     <pre class="code-editor">{{ web_loader.code_snipptes.ChatExample.get_content()|safe }}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card link-expander-card">
+                    <div class="card-header cursor-pointer" data-toggle="collapse" href="#collapse-bossbar">
+                        <span class="card-link link-expander">Bossbar</span>
+                    </div>
+                    <div id="collapse-bossbar" class="collapse card-body p-0" data-parent="#accordion">
+                        <div class="p-3">
+                            <img class="w-100 p-lg-4 p-md-2 p-sm-0" src="/static/img/pages/index/example_showcase_bossbar.png" alt="">
+    <pre class="code-editor">{{ web_loader.code_snipptes.BossBarExample.get_content()|safe }}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card link-expander-card">
+                    <div class="card-header cursor-pointer" data-toggle="collapse" href="#collapse-sidebar">
+                        <span class="card-link link-expander">Animated Sidebar</span>
+                    </div>
+                    <div id="collapse-sidebar" class="collapse card-body p-0" data-parent="#accordion">
+                        <div class="p-3">
+                            <video src="/static/img/pages/index/example_showcase_sidebar.mp4" class="p-lg-4 p-md-2 p-sm-0 w-100" muted loop autoplay></video>
+    <pre class="code-editor">{{ web_loader.code_snipptes.SidebarExample.get_content()|safe }}</pre>
                         </div>
                     </div>
                 </div>
