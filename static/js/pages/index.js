@@ -15,7 +15,7 @@
             return false
         }
 
-        let scroll_position = document.body.scrollTop
+        let scroll_position = document.documentElement.scrollTop
 
         if(scroll_position > 20) scroll_down_btn.classList.add("hide")
         else scroll_down_btn.classList.remove("hide")

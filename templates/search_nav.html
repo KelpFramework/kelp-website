@@ -14,10 +14,10 @@
         <div class="list-group hit-group">
             {% for hit in hits %}
                 <a class="list-group-item list-group-item-action bg-dark cursor-pointer text-light" href="{{ hit.link }}">
-                    <img src="{{ hit.icon }}">
+                    <img src="{{ hit.icon }}" alt="">
                     <div>
-                        <small>{{ hit.type.upper() }}</small>
-                        <h6>&nbsp; {{ hit.name }}</h6>
+                        <small>{{ hit.type.upper() }}</small><br>
+                        <span class="font-size-h6 font-weight-bold">&nbsp; {{ hit.name }}</span>
                     </div>
                 </a>
             {% endfor %}

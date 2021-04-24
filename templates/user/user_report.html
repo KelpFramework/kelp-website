@@ -18,7 +18,7 @@
         <div class="card-body">
 
             <div class="media">
-                <img class="mr-3" src="{{ user.get_avatar() }}" height="70px">
+                <img class="mr-3" src="{{ user.get_avatar() }}" height="70px" alt="">
                 <div class="media-body pt-1">
                     <h5>{{ user.get_username() }}<small> - {{ user.get_email() }}</small></h5>
                     <p>{{ user.get_description()|safe }}</p>

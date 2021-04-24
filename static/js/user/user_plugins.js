@@ -23,7 +23,7 @@ const plugin_template = `
             <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name_picture">
         </a>
         <div class="media-body pt-1">
-            <h5><a href="/plugins/plugin_uuid">plugin_name</a></h5>
+            <span class="font-weight-bold"><a href="/plugins/plugin_uuid">plugin_name</a></span><br>
             <p>plugin_short_description</p>
         </div>
         <div class="col-lg-5 col-md-12 p-0">
@@ -37,7 +37,7 @@ const new_plugin_button = `
             <img class="mr-3" src="/static/img/cross.png" alt="plugin_name">
         </a>
         <div class="media-body pt-1">
-            <h5><a href="/plugins/new">Add Plugin</a><small></h5>
+            <span class="font-weight-bold"><a href="/plugins/new">Add Plugin</a></span>
             <p>Create a new plugin</p>
         </div>
     </li>

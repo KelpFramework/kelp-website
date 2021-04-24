@@ -106,7 +106,7 @@ function load_plugins(){
     if(new Date().getTime() > delay_time + 1000 && !end_reached) {
         loader.hidden = false
         delay_time = new Date().getTime()
-        let position = document.body.scrollTop
+        let position = document.documentElement.scrollTop
         $.ajax({
             url: `/user?get_plugins&page=${dynamic_counter}&amount=${loading_amount}&username=${username}`,
             success: (response) => {
@@ -138,7 +138,7 @@ function load_extensions(){
     if(new Date().getTime() > delay_time + 3000 && !end_reached) {
         loader.hidden = false
         delay_time = new Date().getTime()
-        let position = document.body.scrollTop
+        let position = document.documentElement.scrollTop
         $.ajax({
             url: `/user?get_extensions&page=${dynamic_counter}&amount=${loading_amount}&username=${username}`,
             success: (response) => {

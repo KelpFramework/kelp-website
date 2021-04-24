@@ -21,7 +21,7 @@ const card_template = `
                 <a href="/extensions/{{uuid}}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
-                <h4>{{title}}</h4>
+                <span class="font-size-h4 font-weight-bold">{{title}}</span> <br>
                 <span>{{description}}</span>
             </div>
         </div>
@@ -41,7 +41,7 @@ function load_modules(){
     if(new Date().getTime() > delay_time + 1000 && !end_reached) {
         loader.hidden = false
         delay_time = new Date().getTime()
-        let position = document.body.scrollTop
+        let position = document.documentElement.scrollTop
         $.ajax({
             url: `?get_modules&page=${dynamic_counter}&amount=${loading_amount}`,
             success: (response) => {

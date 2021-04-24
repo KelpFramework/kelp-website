@@ -12,8 +12,8 @@
         <div class="">
             Plugin Banner ( 1920 x 600 recommended ):
             <div class="custom-file">
-                <input class="custom-file-input" style="cursor: pointer" type="file" name="plugin_banner" accept="image/png,image/jpeg,image/gif" required>
-                <label class="custom-file-label banner-label">No file chosen</label>
+                <input id="file-inp-1" class="custom-file-input" style="cursor: pointer" type="file" name="plugin_banner" accept="image/png,image/jpeg,image/gif" required>
+                <label for="file-inp-1" class="custom-file-label banner-label">No file chosen</label>
             </div>
         </div>
     </div>
@@ -21,12 +21,10 @@
     <div class="card container mt-5">
         <div class="card-header">Create a new Plugin</div>
         <div class="card-body">
-{#            <form id="new-plugin-form">#}
             <div>
-
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
-                        <img class="custom-file-preview border border-primary mt-2" src="/static/img/no_img.png">
+                        <img class="custom-file-preview border border-primary mt-2" src="/static/img/no_img.png" alt="">
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <div class="form-group">
@@ -39,8 +37,8 @@
                         </div>
                         Plugin Icon ( 512 x 512 recommended ):
                         <div class="custom-file">
-                            <input class="custom-file-input" style="cursor: pointer" type="file" name="plugin_icon" accept="image/png,image/jpeg,image/gif" required>
-                            <label class="custom-file-label icon-label">No file chosen</label>
+                            <input id="file-inp-2" class="custom-file-input" style="cursor: pointer" type="file" name="plugin_icon" accept="image/png,image/jpeg,image/gif" required>
+                            <label for="file-inp-2" class="custom-file-label icon-label">No file chosen</label>
                         </div>
                     </div>
                 </div>
@@ -56,7 +54,7 @@
                 </div>
 
                 <div class="mt-4 mb-2">Plugin Description:</div>
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#description-edit">Edit</a>
                     </li>
@@ -85,7 +83,6 @@
                     </label>
                 </div>
             </div>
-{#            </form>#}
         </div>
         <div class="card-footer">
             <div>

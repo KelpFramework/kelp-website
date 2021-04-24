@@ -22,14 +22,14 @@
 
 {% block body %}
     {% if verify %}
-        <div class="container">
+        <main class="container">
             <div class="card bg-dark mt-2 p-5">
                 <h3 class="mb-5">A verification Email has been sent to your provided email address!</h3>
                 <a href="?sendAgain" class="btn btn-outline-warning">Send another verification email</a>
             </div>
-        </div>
+        </main>
     {% else %}
-        <div class="container">
+        <main class="container">
             <div class="card bg-dark mt-2">
                 <form method="POST" class="card-body" enctype="multipart/form-data">
                     <input type="text" class="form-control mb-4" placeholder="Username" name="username" pattern="[A-Za-z0-9_-]{4,}" title="at least 4 characters: A-Z a-z _ -" required>
@@ -58,7 +58,7 @@
                     <input type="submit" class="btn btn-lg btn-primary w-100" value="Register">
                 </form>
             </div>
-        </div>
+        </main>
         <div class="spacer"></div>
 
         <script>
