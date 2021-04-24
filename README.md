@@ -5,9 +5,9 @@
 Join the [**DISCORD**](https://discord.gg/KVtjCMwk4x) for exclusive updates, feature voting, etc.
 Share and download free plugins with the community
 
-![](./static/github_resources/img/screenshots/index_01.png)
+![](.github/img/screenshots/index_01.png)
 
-![](./static/github_resources/img/screenshots/index_02.png)
+![](.github/img/screenshots/index_02.png)
 
 ### What is Kelp?
 Visit the [Kelp repo](https://github.com/KelpFramework/kelp) for more info
@@ -21,7 +21,7 @@ for distributing [Kelp Plugins]() (link pending) and [Kelp Extensions]() (link p
 
 ---
 
-![](./static/github_resources/img/missing-files-warning.svg)
+![](.github/img/missing-files-warning.svg)
 
 ### Running the webserver
 You need [Python3](https://www.python.org/downloads/latest) in order to run the server
