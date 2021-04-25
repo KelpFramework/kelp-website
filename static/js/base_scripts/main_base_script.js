@@ -12,6 +12,7 @@
         if (elem.target === "_blank") return
         if (elem.hasAttribute("onclick")) return
         if (elem.hasAttribute("data-toggle")) return
+        if (elem.href === (location.protocol + "//" + location.host + "/#")) return
         for(let entry of elem.classList){
             let exclude = ["card-link", "stretched-link", "btn", "list-group-item", "list-group-item-action", "dropdown-item", "nav-link"]
             if(exclude.includes(entry)) return
