@@ -430,11 +430,12 @@ function edit_tags(uuid, current){
         method: "GET",
         url: "/api/plugins/tags",
         success: (response) => {
+            let template = `<div class="custom-control custom-switch col-lg-3 col-md-4 col-sm-6">
+                                <input type="checkbox" class="custom-control-input plugin_tag" id="switch_tag_{tag}" name="{tag}" data-toggle-for="tg-toggle_{tag}" data-tag-input>
+                                <label class="custom-control-label" for="switch_tag_{tag}">{tag}</label>
+                            </div>`
+
             function populate(){
-                let template = `<div class="custom-control custom-switch col-lg-3 col-md-4 col-sm-6">
-    <input type="checkbox" class="custom-control-input plugin_tag" id="switch_tag_{tag}" name="{tag}" data-toggle-for="tg-toggle_{tag}" data-tag-input>
-    <label class="custom-control-label" for="switch_tag_{tag}">{tag}</label>
-</div>`
                 let return_str = ""
                 for(let tag of response.tags){
                     return_str += template.replaceAll("{tag}", tag)
@@ -444,7 +445,7 @@ function edit_tags(uuid, current){
             modal.Custom(`
                 <div>
                     <div id="form_dd_a66" method="post">
-                        <div class="row mx-2">${populate()}</div>
+                        <div class="row mx-2" id="tag-change-holder">${populate()}</div>
                     </div>
                 </div>
             `)
@@ -452,7 +453,14 @@ function edit_tags(uuid, current){
             if(current){
                 for(let curr_tag of current.split(",")){
                     let tag_link = "tg-toggle_" + curr_tag
-                    document.querySelector(`input[data-toggle-for="${tag_link}"]`).checked = true
+                    let element = document.querySelector(`input[data-toggle-for="${tag_link}"]`)
+                    if(element === null){
+                        let child = document.createElement("div")
+                        child.innerHTML = template.replaceAll("{tag}", curr_tag)
+                        document.querySelector("#tag-change-holder").appendChild(child)
+                        element = document.querySelector(`input[data-toggle-for="${tag_link}"]`)
+                    }
+                    element.checked = true
                 }
             }
 
