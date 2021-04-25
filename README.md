@@ -1,6 +1,6 @@
 ## Seapipe - KelpFramework Homepage
 
-> Developed by [Davis_Software](https://github.com/Software-City) &copy; 2020-2021
+> Developed by [Davis_Software](https://github.com/Davis-Software) &copy; 2020-2021
 
 Join the [**DISCORD**](https://discord.gg/KVtjCMwk4x) for exclusive updates, feature voting, etc.
 Share and download free plugins with the community
