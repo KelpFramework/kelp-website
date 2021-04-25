@@ -71,7 +71,7 @@
                 <div class="bg-success rounded p-2">
                     <span class="font-size-h6 font-weight-bold">Latest Release &nbsp; <small>({{ files[0].modified.strftime("%d.%m.%Y %H:%M:%S") }})</small></span><br>
                     {% if files[0].type == "link" %}
-                        <a class="ml-2 text-black-50" href="{{ files[0].target }}" target="_blank">
+                        <a rel="noreferrer" class="ml-2 text-black-50" href="{{ files[0].target }}" target="_blank">
                             <i class="material-icons">link</i> {{ py.utils.string.shorten_to(files[0].name, 25) }}
                         </a>
                     {% else %}
@@ -87,7 +87,7 @@
                             {% for file in files[1:] %}
                                 <li>
                                     {% if file.type == "link" %}
-                                        <a class="ml-2 text-older-rel" title="last modified: {{ file.modified.strftime("%d.%m.%Y %H:%M:%S") }}" href="{{ file.target }}" target="_blank">
+                                        <a rel="noreferrer" class="ml-2 text-older-rel" title="last modified: {{ file.modified.strftime("%d.%m.%Y %H:%M:%S") }}" href="{{ file.target }}" target="_blank">
                                             <i class="material-icons">link</i> {{ py.utils.string.shorten_to(file.name, 25) }}
                                         </a>
                                     {% else %}

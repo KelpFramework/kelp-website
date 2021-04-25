@@ -259,4 +259,7 @@ function delete_data(mode){
 
 {
     document.querySelector(".user-img-change").addEventListener("click", change_avatar)
+
+    document.querySelector("#cookies-allowed").innerText = getCookie("acceptCookies") === "true" ? "Yes" : "No*"
+    document.querySelector("#cookies-count").innerText = getCookieCount() + "*"
 }

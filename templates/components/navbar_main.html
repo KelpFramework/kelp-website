@@ -40,12 +40,14 @@
                 <div class="dropdown ml-3">
                     <button class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown">{{ account }} </button>
                     <div class="dropdown-menu dropdown-menu-left user-account-dropdown">
-                        <a class="dropdown-item" href="/profile">My Profile</a>
-                        <a class="dropdown-item" href="/profile/plugins">My Plugins</a>
+                        <a class="dropdown-item" href="/profile">Your Profile</a>
+                        <a class="dropdown-item" href="/profile/plugins">Your Plugins</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/profile/settings">Settings</a>
                         {% if user.get_admin() %}
-                            <a class="dropdown-item" href="/acp">Admin Panel</a>
+                            <a class="text-warning dropdown-item" href="/acp">Admin Panel</a>
                         {% endif %}
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="/logout">Logout</a>
                     </div>
                 </div>

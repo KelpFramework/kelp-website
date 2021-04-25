@@ -20,6 +20,7 @@
     <script src="/static/js/bootstrap/bootstrap.min.js"></script>
 
     <script src="/static/js/modules/modalGenerator.js"></script>
+    <script src="/static/js/modules/cookie_tools.js"></script>
 
     {% block base_head %}{% endblock %}
     {% block head %}{% endblock %}
@@ -38,7 +39,7 @@
     {% block base_scripts %}{% endblock %}
     {% block footer %}{% endblock %}
 
-    {% include "components/cookie_notice.html" %}
     <script src="/static/js/base_scripts/main_base_script.js"></script>
+    {% include "components/cookie_notice.html" %}
 </body>
 </html>
