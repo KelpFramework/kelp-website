@@ -10,20 +10,18 @@ const wrapper_pinned = document.querySelector(".row-pinned")
 const loader = document.querySelector(".spinner-holder .spinner-border")
 
 const card_template = `
-    <div class="col-3 ext-card">
-        <div class="card">
-            <div class="card-body">
-                <small class="material-icons {{hidden}}">push_pin</small>
-                <img src="/extensions?picture={{uuid}}" alt="{{title}}">
-                <div class="spinner">
-                    <div class="spinner-border"></div>
-                </div>
-                <a href="/extensions/{{uuid}}" class="stretched-link"></a>
+    <div class="card">
+        <div class="card-body">
+            <small class="material-icons {{hidden}}">push_pin</small>
+            <img src="/extensions?picture={{uuid}}" alt="{{title}}">
+            <div class="spinner">
+                <div class="spinner-border"></div>
             </div>
-            <div class="card-footer">
-                <span class="font-size-h4 font-weight-bold">{{title}}</span> <br>
-                <span>{{description}}</span>
-            </div>
+            <a href="/extensions/{{uuid}}" class="stretched-link"></a>
+        </div>
+        <div class="card-footer">
+            <span class="font-size-h4 font-weight-bold">{{title}}</span> <br>
+            <span>{{description}}</span>
         </div>
     </div>
 `
@@ -41,18 +39,25 @@ function load_modules(){
     if(new Date().getTime() > delay_time + 1000 && !end_reached) {
         loader.hidden = false
         delay_time = new Date().getTime()
-        let position = document.documentElement.scrollTop
         $.ajax({
             url: `?get_modules&page=${dynamic_counter}&amount=${loading_amount}`,
             success: (response) => {
                 for (let extension of response.data) {
-                    // window.scrollTo(0, position)
                     let template = extension.pinned ? wrapper_pinned : wrapper_normal
-                    template.innerHTML += card_template
+                    let elem = document.createElement("div")
+                    elem.classList.add("col-3", "ext-card")
+                    elem.innerHTML += card_template
                         .replaceAll("{{title}}", extension.module_name)
                         .replaceAll("{{description}}", extension.short_description)
                         .replaceAll("{{uuid}}", extension.uuid)
                         .replaceAll("{{hidden}}", extension.pinned ? "" : "hidden")
+                    template.appendChild(elem)
+
+                    document.querySelector(`img[alt='${extension.module_name}']`).addEventListener("load", e => {
+                        e.target.parentNode.removeChild(
+                            e.target.parentNode.querySelector(".spinner")
+                        )
+                    })
                 }
                 dynamic_counter += 1
                 loader.hidden = true

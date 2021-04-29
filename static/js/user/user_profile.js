@@ -66,37 +66,33 @@ if (plugins_tab){
 
 
 const plugin_card_template = `
-    <div class="col-2 ext-card">
-        <div class="card">
-            <div class="card-body">
-                <img src="/plugins?icon=plugin_uuid" alt="plugin_name">
-                <div class="spinner">
-                    <div class="spinner-border"></div>
-                </div>
-                <a href="/plugins/plugin_uuid" class="stretched-link"></a>
+    <div class="card">
+        <div class="card-body">
+            <img src="/plugins?icon=plugin_uuid" alt="plugin_name">
+            <div class="spinner">
+                <div class="spinner-border"></div>
             </div>
-            <div class="card-footer">
-                <h4>plugin_name</h4>
-                <span>plugin_short_description</span>
-            </div>
+            <a href="/plugins/plugin_uuid" class="stretched-link"></a>
+        </div>
+        <div class="card-footer">
+            <h4>plugin_name</h4>
+            <span>plugin_short_description</span>
         </div>
     </div>
 `
 
 const extension_card_template = `
-    <div class="col-2 ext-card">
-        <div class="card">
-            <div class="card-body">
-                <img src="/extensions?picture=extension_uuid" alt="extension_name">
-                <div class="spinner">
-                    <div class="spinner-border"></div>
-                </div>
-                <a href="/extensions/extension_uuid" class="stretched-link"></a>
+    <div class="card">
+        <div class="card-body">
+            <img src="/extensions?picture=extension_uuid" alt="extension_name">
+            <div class="spinner">
+                <div class="spinner-border"></div>
             </div>
-            <div class="card-footer">
-                <h4>extension_name</h4>
-                <span>extension_short_description</span>
-            </div>
+            <a href="/extensions/extension_uuid" class="stretched-link"></a>
+        </div>
+        <div class="card-footer">
+            <h4>extension_name</h4>
+            <span>extension_short_description</span>
         </div>
     </div>
 `
@@ -106,7 +102,6 @@ function load_plugins(){
     if(new Date().getTime() > delay_time + 1000 && !end_reached) {
         loader.hidden = false
         delay_time = new Date().getTime()
-        let position = document.documentElement.scrollTop
         $.ajax({
             url: `/user?get_plugins&page=${dynamic_counter}&amount=${loading_amount}&username=${username}`,
             success: (response) => {
@@ -114,11 +109,18 @@ function load_plugins(){
                     plugins_tab.innerHTML = "<div class='text-center w-100 mt-3'><h6>This user has not created any plugins</h6></div>"
                 }
                 for (let plugin of response.data) {
-                    // window.scrollTo(0, position)
-                    plugins_tab.innerHTML += plugin_card_template
+                    let elem = document.createElement("div")
+                    elem.classList.add("col-2", "ext-card")
+                    elem.innerHTML += plugin_card_template
                         .replaceAll("plugin_name", plugin.plugin_name)
                         .replaceAll("plugin_short_description", plugin.short_description)
                         .replaceAll("plugin_uuid", plugin.uuid)
+                    plugins_tab.appendChild(elem)
+                    document.querySelector(`img[alt='${plugin.plugin_name}']`).addEventListener("load", e => {
+                        e.target.parentNode.removeChild(
+                            e.target.parentNode.querySelector(".spinner")
+                        )
+                    })
                 }
                 dynamic_counter += 1
                 loader.hidden = true
@@ -138,7 +140,6 @@ function load_extensions(){
     if(new Date().getTime() > delay_time + 3000 && !end_reached) {
         loader.hidden = false
         delay_time = new Date().getTime()
-        let position = document.documentElement.scrollTop
         $.ajax({
             url: `/user?get_extensions&page=${dynamic_counter}&amount=${loading_amount}&username=${username}`,
             success: (response) => {
@@ -146,11 +147,18 @@ function load_extensions(){
                     extensions_tab.innerHTML = "<div class='text-center w-100 mt-3'><h6>This user has not created any extensions</h6></div>"
                 }
                 for (let extension of response.data) {
-                    // window.scrollTo(0, position)
-                    extensions_tab.innerHTML += extension_card_template
+                    let elem = document.createElement("div")
+                    elem.classList.add("col-2", "ext-card")
+                    elem.innerHTML += extension_card_template
                         .replaceAll("extension_name", extension.module_name)
                         .replaceAll("extension_short_description", extension.short_description)
                         .replaceAll("extension_uuid", extension.uuid)
+                    extensions_tab.appendChild(elem)
+                    document.querySelector(`img[alt='${extension.module_name}']`).addEventListener("load", e => {
+                        e.target.parentNode.removeChild(
+                            e.target.parentNode.querySelector(".spinner")
+                        )
+                    })
                 }
                 dynamic_counter += 1
                 loader.hidden = true
