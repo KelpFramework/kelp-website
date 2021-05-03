@@ -21,7 +21,7 @@ def clear_cookies(mode):
 
     cookie_list = list()
     for cookie in cookies:
-        cookie_list.append(cookie[0])
+        cookie_list.append({"name": cookie[0], "value": cookie[1]})
 
     if mode == "json":
         data = {"cleared_cookies": cookie_list}
@@ -32,8 +32,8 @@ def clear_cookies(mode):
         )
     response = make_response(data, StopCodes.Success.OK)
 
-    for cookie in cookie_list:
-        response.delete_cookie(cookie)
+    for cookie in cookies:
+        response.delete_cookie(cookie[0])
 
     return response
 

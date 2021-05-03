@@ -23,7 +23,7 @@
                 <li class="list-group-item bg-dark"><b>no cookies cleared</b></li>
             {% endif %}
             {% for cookie in cleared_cookies %}
-                <li class="list-group-item bg-dark"><b>{{ cookie }}</b></li>
+                <li class="list-group-item bg-dark"><b>{{ cookie.name }}</b> - <span class="text-secondary">{{ py.utils.string.shorten_to(cookie.value, 45, False) }}</span></li>
             {% endfor %}
         </ul>
     </div>
