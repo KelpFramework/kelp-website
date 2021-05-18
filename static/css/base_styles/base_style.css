@@ -111,6 +111,14 @@ body *{
 .navbar .btn-section{
     display: inline-flex;
 }
+.navbar .dropdown{
+    position: inherit;
+}
+.navbar .dropdown-menu{
+    right: 2px;
+    top: 70px;
+    left: auto;
+}
 
 .link-top{
     position: fixed;
@@ -170,9 +178,14 @@ footer a:hover{
     .navbar *{
         transition: all .3s;
     }
-    /*.link-top{*/
-    /*    display: none;*/
-    /*}*/
+    .navbar .dropdown{
+        position: initial;
+    }
+    .navbar .dropdown-menu{
+        right: 0;
+        top: initial;
+        left: 0;
+    }
     footer{
         text-align: center;
     }
