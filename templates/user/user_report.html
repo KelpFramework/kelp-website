@@ -18,10 +18,10 @@
         <div class="card-body">
 
             <div class="media">
-                <img class="mr-3" src="{{ user.get_avatar() }}" height="70px" alt="">
+                <img class="mr-3" src="{{ profile.get_avatar() }}" style="width: 70px;height: 70px;object-fit: cover;border-radius: 50%" alt="">
                 <div class="media-body pt-1">
-                    <h5>{{ user.get_username() }}<small> - {{ user.get_email() }}</small></h5>
-                    <p>{{ user.get_description()|safe }}</p>
+                    <h5>{{ profile.get_username() }}<small> - {{ profile.get_email() }}</small></h5>
+                    <p>{{ profile.get_description()|safe }}</p>
                 </div>
             </div>
 

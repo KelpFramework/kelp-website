@@ -46,6 +46,7 @@ small span[href]{
     height: 64px;
     width: 64px;
     border-radius: 15%;
+    object-fit: cover;
 }
 .list-group-item.media .media-body h5 a{
     font-size: 1rem;

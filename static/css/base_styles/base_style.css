@@ -101,6 +101,7 @@ body *{
     left: -5px;
     height: 32px;
     width: 32px;
+    object-fit: cover;
     border-radius: 15%;
 }
 .navbar form .autocomplete-box a div{

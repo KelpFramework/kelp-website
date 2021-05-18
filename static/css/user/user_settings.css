@@ -4,11 +4,16 @@
     padding: 0;
     cursor: pointer;
     -webkit-user-drag: none;
+    object-fit: cover;
 }
 .user-img-change:hover{
     transition: all .3s;
     transform: scale(1.01);
     border: solid 1px gray;
+}
+
+#avatar-preview{
+    object-fit: cover;
 }
 
 .form-control{

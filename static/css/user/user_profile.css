@@ -36,7 +36,16 @@ i.material-icons{
     border-top-right-radius: 2.6rem;
     border-top-left-radius: 2.6rem;
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
+
+.user-avatar{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
 .ext-card .card-body small{
     position: absolute;
     top: 20px;

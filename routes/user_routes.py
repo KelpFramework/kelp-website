@@ -110,7 +110,7 @@ def user_report(username):
     return render_template(
         "user/user_report.html",
         types=configuration.user_report_types,
-        user=user_repo.get_user_query_object(username)
+        profile=user_repo.get_user_query_object(username)
     )
 
 
