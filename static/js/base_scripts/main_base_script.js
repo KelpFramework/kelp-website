@@ -1,6 +1,9 @@
 {
     document.querySelectorAll(".link-expander-card .link-expander").forEach(elem => {
         elem.innerHTML += '<span class="material-icons">expand_more</span>'
+        if(elem.parentNode.parentNode.querySelector(".collapse").classList.contains("show")){
+            elem.querySelector("span").classList.add("expanded")
+        }
     })
     function toggle(e){
         e.target.parentElement.querySelector(".link-expander-card .link-expander span.material-icons").classList.toggle("expanded")
