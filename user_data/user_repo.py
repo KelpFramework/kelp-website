@@ -4,6 +4,7 @@ and allows easy access to specific user data and management tools
 such as deletion/creation of new users.
 """
 
+import json
 import hashlib
 import datetime
 import configuration
@@ -204,6 +205,17 @@ def check_user_password(user, passwd):
         return False
     except AttributeError:
         return False
+
+
+def apply_user_settings(user, settings):
+    settings = json.loads(settings)
+    setts = json.loads(User.query.filter_by(username=user).first().settings)
+
+    for key in settings:
+        setts[key] = settings[key]
+
+    User.query.filter_by(username=user).first().settings = json.dumps(setts)
+    sql_utils.commit_db()
 
 
 def check_user_passwordhash(user, pwd_hash):

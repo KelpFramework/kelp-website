@@ -57,6 +57,11 @@ def profile_settings():
                 ),
                 error_code=StopCodes.Success.OK
             )
+        if "email_settings" in request.form:
+            user_repo.apply_user_settings(
+                session.get("username"),
+                request.form.get("email_settings")
+            )
         if "delete_data" in request.form:
             cmd = request.form.get("delete_data")
             username = session.get("username")

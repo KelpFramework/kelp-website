@@ -8,6 +8,7 @@ from sqlalchemy import Column, Integer, String, Boolean, Text, BLOB, DateTime
 from database.database_connection import database_engine as engine
 
 import uuid
+import json
 import base64
 import datetime
 import schedule
@@ -35,6 +36,7 @@ class User(engine.Model):
     activated = Column(Boolean)
     activation_code = Column(String(36), unique=True)
     admin = Column(Boolean)
+    settings = Column(String(365))
 
     def __init__(self, username, password, email, description, avatar, activated=False, admin=False):
         self.username = username
@@ -50,11 +52,13 @@ class User(engine.Model):
         self.activation_code = str(uuid.uuid4())
         self.admin = admin
 
+        self.settings = json.dumps({})
+
 
 class UserWebQuery:
     def __init__(self, user_model: User or None):
 
-        whitelist = ["id", "username", "password", "email", "description", "avatar", "created", "activation_code", "activated", "admin"]
+        whitelist = ["id", "username", "password", "email", "description", "avatar", "created", "activation_code", "activated", "admin", "settings"]
 
         if user_model is None:
             for obj in whitelist:
@@ -142,6 +146,13 @@ class UserWebQuery:
         if not self.get_suspended():
             return False
         return markdown.markdown(UserSuspend.query.filter_by(username=self.username).first().message)
+
+    def get_settings(self):
+        return json.loads(self.settings)
+
+    def get_setting(self, key: str):
+        sets = self.get_settings()
+        return sets[key] if key in sets else None
 
 
 #

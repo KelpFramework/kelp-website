@@ -38,7 +38,9 @@
                                 {{ '<i class="material-icons">build</i>'|safe if profile.get_admin() }}
                                 {{ profile.get_username() }}
                             </h4>
-                            <span><a href="mailto://{{ profile.get_email() }}">{{ profile.get_email() }}</a></span> <br>
+                            {% if profile.get_setting("email_visible") or (user and user.get_admin()) %}
+                                <span><a href="mailto://{{ profile.get_email() }}">{{ profile.get_email() }}</a></span> <br>
+                            {% endif %}
                             <span>Member since: {{ profile.get_created().strftime("%d.%m.%Y") }}</span> <br>
                         </div>
                         <div class="media-body">

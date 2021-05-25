@@ -209,6 +209,49 @@ function change_password(){
     modal.show()
 }
 
+function change_email_settings(){
+    let modal = new Modal("modal-wrapper", {heading: "Email settings"}, "large")
+    modal.Custom(`
+        <form id="form_sg_a123" method="post">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="email-switch1" name="email_visible">
+                <label class="custom-control-label" for="email-switch1">Visible for other users</label>
+            </div>
+        </form>
+    `)
+    modal.Input_footer(
+        "form_submit",
+        "submit",
+        "Save",
+        "",
+        "btn btn-warning",
+        "Save changes",
+        `form="form_sg_a123"`
+    ).addEventListener("click", e => {
+        let wrapper = document.querySelector("#form_sg_a123")
+        let inputs = wrapper.querySelectorAll("input[class='custom-control-input']")
+
+        e.preventDefault()
+
+        let settings = {}
+        let data = new FormData()
+        let request = new XMLHttpRequest()
+
+        inputs.forEach(elem => {
+            settings[elem.getAttribute("name")] = elem.checked
+        })
+        data.append("email_settings", JSON.stringify(settings))
+
+        request.addEventListener("load", _ => {
+            location.reload()
+        })
+
+        request.open("POST", "/profile/settings")
+        request.send(data)
+    })
+    modal.show()
+}
+
 function delete_data(mode){
     function random(length){
         return Math.random().toString(16).substr(2, length)
