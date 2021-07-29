@@ -1,17 +1,7 @@
 {% extends "base/minimal_base.html" %}
 
 {% block head %}
-    <style>
-        .form-control{
-            transition: all .3s;
-            background-color: #272b30;
-            color: #fff;
-        }
-        .form-control:focus{
-            background-color: #272b30;
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/pages/login.css">
 {% endblock %}
 
 {% block body %}
@@ -41,7 +31,7 @@
                     <input type="text" class="form-control mb-1" placeholder="Username" name="username" pattern="[A-Za-z0-9_-]{4,}" title="at least 4 characters: A-Z a-z _ -" required>
                     <input type="password" class="form-control" placeholder="Password" name="password" pattern="[A-Za-z0-9-_+%€/]{6,}" title="at least 6 characters A-Z a-z 0-9 - _ + % € /" required>
                     <br> <span class="text-danger" id="error">{{ error }}</span> <br>
-                    <input type="submit" class="btn btn-lg btn-primary w-100" value="Login">
+                    <button type="submit" class="btn btn-lg btn-primary w-100" >Login</button>
                     <div class="text-center mt-3">
                         <span>Or <a class="underlineHover" href="/register">sign up</a> for a new account</span>
                     </div>

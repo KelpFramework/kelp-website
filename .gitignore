@@ -1,3 +1,5 @@
 /static/db/db.sqlite
+/static/db/db.sqlite.backup
 /static/css/bootstrap/src
+/static/css/bootstrap/bootstrap
 /.idea

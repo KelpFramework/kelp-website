@@ -8,7 +8,7 @@ function change_avatar(e){
     let username = e.target.getAttribute("data-user")
     let modal = new Modal("modal-wrapper", {heading: "Change Avatar"}, "large")
 
-    modal.Custom(`<img id="avatar-preview" src="/user?avatar=${username}" height="256px" width="256px" class="border border-primary">`)
+    modal.Custom(`<img id="avatar-preview" src="/user?avatar=${username}" height="256px" width="256px" class="border border-primary" alt="avatar">`)
 
     let input = modal.FileInput("avatar-input", false, "btn btn-outline-primary ml-5", "image/png,image/jpeg,image/gif")
     let preview = document.querySelector("#avatar-preview")
@@ -33,12 +33,11 @@ function change_avatar(e){
         }
     })
 
-    modal.FunctionButton("confirm-btn", "Upload and change", "btn btn-outline-warning", "click", e => {
+    modal.FunctionButton("confirm-btn", "Upload and change", "btn btn-outline-warning w-100", "click", e => {
         if (input.files.length !== 1){
             return
         }
 
-        e.target.hidden = true
         let data = new FormData()
         let request = new XMLHttpRequest()
 
@@ -48,10 +47,13 @@ function change_avatar(e){
         request.open("POST", "/profile/settings")
         request.send(data)
 
-        request.addEventListener("load", e => {
+        request.addEventListener("load", _ => {
             modal.destroy()
             location.reload()
         })
+
+        e.target.setAttribute("disabled", null)
+        e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
     })
 
     modal.show()
@@ -67,13 +69,10 @@ function edit_description(){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Save",
-        "",
-        "btn btn-outline-warning",
-        "Save",
+        "btn btn-outline-warning w-100",
         `form="form_sg_a21"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_sg_a21")
@@ -93,6 +92,8 @@ function edit_description(){
 
         request.open("POST", "/profile/settings")
         request.send(data)
+        e.target.setAttribute("disabled", null)
+        e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
     })
     modal.show()
 }
@@ -105,13 +106,10 @@ function change_email(current){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Save",
-        "",
-        "btn btn-outline-warning",
-        "Save",
+        "btn btn-outline-warning w-100",
         `form="form_sg_a51"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_sg_a51")
@@ -132,6 +130,8 @@ function change_email(current){
 
             request.open("POST", "/profile/settings")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -156,13 +156,13 @@ function change_password(){
         pwd_err.innerText = err
     }
 
-    confirm_btn.addEventListener("click", ev => {
+    confirm_btn.addEventListener("click", _ => {
         let form = /[A-Za-z0-9-_+%€/]{6,}/
         let old = pwd_old.value
         let new1 = pwd_new.value
         let new2 = pwd_new2.value
 
-        if(old === "" | new1 === "" | new2 === "") {
+        if(old === "" || new1 === "" || new2 === "") {
             errorOut("Please fill out every input")
             return
         }
@@ -170,7 +170,7 @@ function change_password(){
             errorOut("Current password does not match regex: A-Za-z0-9-_+%€/")
             return
         }
-        if(!form.test(new1) | !form.test(new2)){
+        if(!form.test(new1) || !form.test(new2)){
             errorOut("New password does not match regex: A-Za-z0-9-_+%€/")
             return
         }
@@ -188,7 +188,6 @@ function change_password(){
             old_password: pwd_old.value,
             new_password: pwd_new.value
         }, r => {
-            console.log(r)
             if (r.state) {
                 location.href = "/logout"
             } else {
@@ -219,13 +218,10 @@ function change_email_settings(){
             </div>
         </form>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
-        "Save",
-        "",
-        "btn btn-warning",
         "Save changes",
+        "btn btn-outline-warning w-100",
         `form="form_sg_a123"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_sg_a123")
@@ -248,6 +244,8 @@ function change_email_settings(){
 
         request.open("POST", "/profile/settings")
         request.send(data)
+        e.target.setAttribute("disabled", null)
+        e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
     })
     modal.show()
 }
@@ -268,21 +266,17 @@ function delete_data(mode){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
-        "Save",
-        "",
-        "btn btn-danger",
         "Delete",
+        "btn btn-outline-danger w-100",
         `form="form_sg_a55"`
-    ).addEventListener("click", e => {
+    ).addEventListener("submit", e => {
+        e.preventDefault()
         let wrapper = document.querySelector("#form_sg_a55")
         let verify = wrapper.querySelector("input[name='verify']")
 
         if(verify.value === code){
-            e.preventDefault()
-
             let data = new FormData()
             let request = new XMLHttpRequest()
 
@@ -294,6 +288,8 @@ function delete_data(mode){
 
             request.open("POST", "/profile/settings")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()

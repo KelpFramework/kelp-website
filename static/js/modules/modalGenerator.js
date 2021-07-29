@@ -85,6 +85,21 @@ class Modal{
         this.wrapper_footer.innerHTML += `<input name="${name}" id="${id}" class="form-control ${classes}" type="${type}" placeholder="${text}" value="${value}" ${custom}>`;
         return document.getElementById(id);
     }
+    SubmitButton(id, html, classes="", custom=""){
+        let elem = document.createElement("button")
+        elem.type = "submit"
+        elem.id = id
+        elem.innerHTML = html
+        elem.name = name
+        elem.setAttribute("class", classes)
+        for (let arg of custom.split(" ")){
+            let key = arg.split("=")[0]
+            let val = arg.split("=")[1].replaceAll('"', "")
+            elem.setAttribute(key, val)
+        }
+        this.wrapper_footer.appendChild(elem)
+        return elem
+    }
     TextArea(id, text, classes="", value=""){
         this.wrapper_body.innerHTML += `<textarea id="${id}" class="form-control ${classes}" placeholder="${text}" value="${value}"></textarea>`;
         return document.getElementById(id);

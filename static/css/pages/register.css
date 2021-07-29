@@ -1,0 +1,15 @@
+.form-control{
+    transition: all .3s;
+    background-color: #272b30;
+    color: #fff;
+}
+.form-control:focus{
+    background-color: #272b30;
+    color: #fff;
+}
+#navbar-spacer{
+    height: 20px;
+}
+.spacer{
+    height: 50px;
+}

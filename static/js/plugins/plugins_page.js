@@ -21,13 +21,10 @@ function upload_file(uuid){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Upload",
-        "",
-        "btn btn-outline-info",
-        "Upload",
+        "btn btn-outline-info w-100",
         `form="form_sda22a"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_sda22a")
@@ -62,6 +59,8 @@ function upload_file(uuid){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -77,13 +76,10 @@ function link_file(uuid){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
-        "Link",
-        "",
-        "btn btn-outline-info",
         "Add Link",
+        "btn btn-outline-info w-100",
         `form="form_sda2a2"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_sda2a2")
@@ -106,6 +102,8 @@ function link_file(uuid){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -127,7 +125,7 @@ function delete_file(uuid, filename, modal_del=null){
     modal.Custom(`
         Are you sure that you want to delete this file?
     `)
-    modal.FunctionButton("form_submit", "Yes, delete", "btn btn-outline-danger", "click", _ => {
+    modal.FunctionButton("form_submit", "Yes, delete", "btn btn-outline-danger", "click", e => {
         let data = new FormData()
         let request = new XMLHttpRequest()
 
@@ -142,6 +140,8 @@ function delete_file(uuid, filename, modal_del=null){
 
         request.open("POST", "/plugins/manage")
         request.send(data)
+        e.target.setAttribute("disabled", null)
+        e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
     })
     modal.FunctionButton("form_abort", "Cancel", "btn btn-outline-success", "click", _ => {
         modal.destroy()
@@ -156,7 +156,7 @@ function change_icon(uuid){
     modal.Custom(`
         <div class="row">
             <div class="p-1 col-lg-6 col-md-12 text-center">
-                <img id="image-change-preview" style="width: 300px;height: 300px;" src="/plugins?icon=${uuid}">
+                <img id="image-change-preview" style="width: 300px;height: 300px;" src="/plugins?icon=${uuid}" alt="preview">
             </div>
             <form id="form_2sda21" method="post" class="p-1 col-lg-6 col-md-12 text-center">
                 <h6>Icon File:</h6> <input id="pict-change" class="btn btn-outline-primary" type="file" name="pict" placeholder="picture" accept="image/png,image/jpeg,image/gif" required>
@@ -186,13 +186,10 @@ function change_icon(uuid){
             document.querySelector("#image-change-preview").src = e.target.result
         }
     })
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Change",
-        "",
-        "btn btn-outline-warning",
-        "Change",
+        "btn btn-outline-warning w-100",
         `form="form_2sda21"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_2sda21")
@@ -218,6 +215,8 @@ function change_icon(uuid){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -228,7 +227,7 @@ function change_banner(uuid){
     modal.Custom(`
         <div class="row">
             <div class="col-12 text-center">
-                <img id="image-change-preview" style="width: 100%;height: auto;" src="/plugins?banner=${uuid}">
+                <img id="image-change-preview" style="width: 100%;height: auto;" src="/plugins?banner=${uuid}" alt="banner">
             </div>
             <form id="form_2sda21" method="post" class="pt-3 col-12 text-center">
                 <h6>Banner File:</h6> <input id="pict-change" class="btn btn-outline-primary" type="file" name="pict" placeholder="picture" accept="image/png,image/jpeg,image/gif" required>
@@ -258,13 +257,10 @@ function change_banner(uuid){
             document.querySelector("#image-change-preview").src = e.target.result
         }
     })
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Change",
-        "",
-        "btn btn-outline-warning",
-        "Change",
+        "btn btn-outline-warning w-100",
         `form="form_2sda21"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_2sda21")
@@ -290,6 +286,8 @@ function change_banner(uuid){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -351,13 +349,10 @@ function edit_name(uuid, current){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Save",
-        "",
-        "btn btn-outline-warning",
-        "Save",
+        "btn btn-outline-warning w-100",
         `form="form_ss_a61"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_ss_a61")
@@ -379,6 +374,8 @@ function edit_name(uuid, current){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -392,13 +389,10 @@ function edit_short_description(uuid, current){
             </form>
         </div>
     `)
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Save",
-        "",
-        "btn btn-outline-warning",
-        "Save",
+        "btn btn-outline-warning w-100",
         `form="form_ss_a66"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#form_ss_a66")
@@ -420,6 +414,8 @@ function edit_short_description(uuid, current){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -444,7 +440,7 @@ function edit_tags(uuid, current){
             }
             modal.Custom(`
                 <div>
-                    <div id="form_dd_a66" method="post">
+                    <div id="form_dd_a66">
                         <div class="row mx-2" id="tag-change-holder">${populate()}</div>
                     </div>
                 </div>
@@ -467,13 +463,10 @@ function edit_tags(uuid, current){
             modal.show()
         }
     })
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Save",
-        "",
-        "btn btn-outline-warning",
-        "Save",
+        "btn btn-outline-warning w-100",
         `form="form_dd_a66"`
     ).addEventListener("click", e => {
         e.preventDefault()
@@ -500,6 +493,8 @@ function edit_tags(uuid, current){
 
         request.open("POST", "/plugins/manage")
         request.send(data)
+        e.target.setAttribute("disabled", null)
+        e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
     })
 }
 function edit_description(uuid, orig_obj){
@@ -544,13 +539,10 @@ function edit_description(uuid, orig_obj){
     }
     document.querySelector("textarea[name='plugin_description']").addEventListener("change", change_ev)
     change_ev({target:document.querySelector("textarea[name='plugin_description']")})
-    modal.Input_footer(
+    modal.SubmitButton(
         "form_submit",
-        "submit",
         "Save",
-        "",
-        "btn btn-outline-warning",
-        "Save",
+        "btn btn-outline-warning w-100",
         `form="description-edit"`
     ).addEventListener("click", e => {
         let wrapper = document.querySelector("#description-edit")
@@ -571,6 +563,8 @@ function edit_description(uuid, orig_obj){
 
             request.open("POST", "/plugins/manage")
             request.send(data)
+            e.target.setAttribute("disabled", null)
+            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()
@@ -585,7 +579,7 @@ function delete_plugin(uuid){
         "form_submit",
         "Yes, delete",
         "btn-outline-danger",
-    ).addEventListener("click", _ => {
+    ).addEventListener("click", e => {
         let data = new FormData()
         let request = new XMLHttpRequest()
 
@@ -598,6 +592,8 @@ function delete_plugin(uuid){
 
         request.open("POST", "/plugins/manage")
         request.send(data)
+        e.target.setAttribute("disabled", null)
+        e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
     })
     modal.show()
 }

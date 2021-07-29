@@ -19,6 +19,12 @@ from kelp_plugins import kelp_plugin_repo
 from utils import sql_utils
 
 
+def secure_hash_str(string: str, cycles: int = 30) -> str:
+    for i in range(cycles):
+        string = hashlib.sha512(bytes(string, "utf-8")).hexdigest()
+    return string
+
+
 def get_user_query_object(user: str) -> UserWebQuery:
     if User.query.filter_by(username=user) is not None:
         return UserWebQuery(User.query.filter_by(username=user).first())
@@ -33,8 +39,8 @@ def get_all_user_query_object() -> list:
 
 
 def create_user(username, password, email, description, avatar, admin=False):
-    password_b = bytes(password, "utf-8")
-    pwd_hash = hashlib.sha512(password_b).hexdigest()
+    # pwd_hash = hashlib.sha512(password_b).hexdigest()
+    pwd_hash = secure_hash_str(password)
 
     user = User(username, pwd_hash, email, description, avatar, admin=admin)
 
@@ -128,7 +134,8 @@ def change_avatar(user, avatar):
 def change_password(user, old, new):
     name = User.query.filter_by(username=user).first()
     if check_user_password(user, old):
-        name.password = hashlib.sha512(bytes(new, "utf-8")).hexdigest()
+        # name.password = hashlib.sha512(bytes(new, "utf-8")).hexdigest()
+        name.password = secure_hash_str(new)
         db.session.commit()
         return True
     return False
@@ -136,7 +143,8 @@ def change_password(user, old, new):
 
 def set_password(user, password):
     name = User.query.filter_by(username=user).first()
-    name.password = hashlib.sha512(bytes(password, "utf-8")).hexdigest()
+    # name.password = hashlib.sha512(bytes(password, "utf-8")).hexdigest()
+    name.password = secure_hash_str(password)
     db.session.commit()
     return True
 
@@ -198,7 +206,8 @@ def user_exists(username):
 
 def check_user_password(user, passwd):
     try:
-        passwd = hashlib.sha512(bytes(passwd, "utf-8")).hexdigest()
+        # passwd = hashlib.sha512(bytes(passwd, "utf-8")).hexdigest()
+        passwd = secure_hash_str(passwd)
         userdata = User.query.filter_by(username=user).first()
         if user is not None and userdata.password == passwd:
             return True
