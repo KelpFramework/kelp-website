@@ -62,8 +62,8 @@
     margin-bottom: 200px;
 }
 
-.spinner-holder .spinner-border, .spinner-holder span{
-    margin-left: calc( 50% - ( 2rem / 2) );;
+.spinner-holder{
+    text-align: center;
 }
 
 @media screen and (max-width: 481px){

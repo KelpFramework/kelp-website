@@ -47,6 +47,13 @@ small span[href]{
     width: 64px;
     border-radius: 15%;
     object-fit: cover;
+    z-index: 100;
+}
+.list-group-item.media .spinner{
+    position: absolute;
+    top: 29px;
+    left: 36px;
+    z-index: 99;
 }
 .list-group-item.media .media-body h5 a{
     font-size: 1rem;
@@ -60,6 +67,7 @@ small span[href]{
     text-decoration: none;
 }
 
+
 .card-header .material-icons{
     vertical-align: middle;
     line-height: 0 !important;
@@ -71,8 +79,8 @@ small span[href]{
     margin-bottom: 200px;
 }
 
-.spinner-holder .spinner-border, .spinner-holder span{
-    margin-left: calc( 50% - ( 2rem / 2) );
+.spinner-holder{
+    text-align: center;
 }
 
 @media screen and (max-width: 481px){

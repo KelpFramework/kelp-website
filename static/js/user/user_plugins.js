@@ -18,18 +18,19 @@ const loader = document.querySelector(".spinner-holder .spinner-border")
 
 
 const plugin_template = `
-    <li class="list-group-item media row m-0">
-        <a href="/plugins/plugin_uuid">
-            <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name_picture">
-        </a>
-        <div class="media-body pt-1">
-            <span class="font-weight-bold"><a href="/plugins/plugin_uuid">plugin_name</a></span><br>
-            <p>plugin_short_description</p>
+    <a href="/plugins/plugin_uuid">
+        <div class="spinner">
+            <div class="spinner-border"></div>
         </div>
-        <div class="col-lg-5 col-md-12 p-0">
-            <div>plugin_tags</div>
-        </div>
-    </li>
+        <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name">
+    </a>
+    <div class="media-body pt-1">
+        <span class="font-weight-bold"><a href="/plugins/plugin_uuid">plugin_name</a></span><br>
+        <p>plugin_short_description</p>
+    </div>
+    <div class="col-lg-5 col-md-12 p-0">
+        <div>plugin_tags</div>
+    </div>
 `
 const new_plugin_button = `
     <li class="list-group-item media row m-0 card-btn-add">
@@ -69,21 +70,32 @@ function load_plugins(){
                     }
                 }
                 for (let plugin of response.data) {
-                    wrapper.innerHTML += plugin_template
+                    let elem = document.createElement("li")
+                    elem.setAttribute("class", "list-group-item media row m-0")
+                    elem.innerHTML = plugin_template
                         .replaceAll("plugin_name", plugin.plugin_name)
                         .replaceAll("plugin_short_description", plugin.short_description)
                         .replaceAll("plugin_uuid", plugin.uuid)
                         .replaceAll("plugin_tags", makeTagList(plugin.tags))
+                    wrapper.appendChild(elem)
+
+                    document.querySelector(`img[alt='${plugin.plugin_name}']`).addEventListener("load", e => {
+                        e.target.parentNode.removeChild(
+                            e.target.parentNode.querySelector(".spinner")
+                        )
+                    })
                 }
                 dynamic_counter += 1
                 loader.hidden = true
             },
             error: (response) => {
+                loader.classList.remove("spinner-border")
                 if(response.status === 404){
                     end_reached = true
+                    loader.parentNode.innerHTML += "<span>End of content</span>"
+                }else{
+                    loader.parentNode.innerHTML += `<span class="text-danger">HTTP Error ${response.status}: ${response.statusText}</span>`
                 }
-                loader.classList.remove("spinner-border")
-                loader.innerHTML = "<span>End of content</span>"
             }
         })
     }

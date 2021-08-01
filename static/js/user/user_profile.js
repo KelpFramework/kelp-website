@@ -126,11 +126,13 @@ function load_plugins(){
                 loader.hidden = true
             },
             error: (response) => {
+                loader.classList.remove("spinner-border")
                 if(response.status === 404){
                     end_reached = true
+                    loader.innerHTML += "<span>End of content</span>"
+                }else{
+                    loader.innerHTML += `<span class="text-danger">HTTP Error ${response.status}: ${response.statusText}</span>`
                 }
-                loader.classList.remove("spinner-border")
-                loader.innerHTML = "<span>End of content</span>"
             }
         })
     }
@@ -164,11 +166,13 @@ function load_extensions(){
                 loader.hidden = true
             },
             error: (response) => {
+                loader.classList.remove("spinner-border")
                 if(response.status === 404){
                     end_reached = true
+                    loader.innerHTML += "<span>End of content</span>"
+                }else{
+                    loader.innerHTML += `<span class="text-danger">HTTP Error ${response.status}: ${response.statusText}</span>`
                 }
-                loader.classList.remove("spinner-border")
-                loader.innerHTML = "<span>End of content</span>"
             }
         })
     }

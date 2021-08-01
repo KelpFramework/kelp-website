@@ -63,11 +63,14 @@ function load_modules(){
                 loader.hidden = true
             },
             error: (response) => {
+                loader.classList.remove("spinner-border")
                 if(response.status === 404){
                     end_reached = true
+                    loader.parentNode.innerHTML += "<span>End of content</span>"
+                }else{
+                    console.log(response)
+                    loader.parentNode.innerHTML += `<span class="text-danger">HTTP Error ${response.status}: ${response.statusText}</span>`
                 }
-                loader.classList.remove("spinner-border")
-                loader.innerHTML = "<span>End of content</span>"
             }
         })
     }
