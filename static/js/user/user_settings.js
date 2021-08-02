@@ -262,18 +262,19 @@ function delete_data(mode){
         <span class="mt-3">Please enter the following to proceed: ${code}</span>
         <div>
             <form id="form_sg_a55" method="post">
-                <input type="text" class="form-control" name="verify" placeholder="${code}" required>
+                <input type="text" class="form-control" name="verify" pattern="${code}" placeholder="${code}" required>
             </form>
         </div>
     `)
-    modal.SubmitButton(
+    let btn = modal.SubmitButton(
         "form_submit",
         "Delete",
         "btn btn-outline-danger w-100",
         `form="form_sg_a55"`
-    ).addEventListener("submit", e => {
+    )
+    let wrapper = document.querySelector("#form_sg_a55")
+    wrapper.addEventListener("submit", e => {
         e.preventDefault()
-        let wrapper = document.querySelector("#form_sg_a55")
         let verify = wrapper.querySelector("input[name='verify']")
 
         if(verify.value === code){
@@ -288,8 +289,8 @@ function delete_data(mode){
 
             request.open("POST", "/profile/settings")
             request.send(data)
-            e.target.setAttribute("disabled", null)
-            e.target.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
+            btn.setAttribute("disabled", null)
+            btn.innerHTML = "<div class='spinner-border spinner-border-sm'></div>"
         }
     })
     modal.show()

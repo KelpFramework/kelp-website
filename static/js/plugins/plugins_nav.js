@@ -19,7 +19,7 @@ const list_template = `
         <div class="spinner">
             <div class="spinner-border"></div>
         </div>
-        <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name">
+        <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name" data-loc="plugin_uuid">
     </a>
     <div class="media-body pt-1">
         <h5><a href="/plugins/plugin_uuid">plugin_name</a><small> - by <span href="/user/plugin_creator" onclick="open_link(this)">plugin_creator</span></small></h5>
@@ -59,10 +59,14 @@ tag_form.addEventListener("submit", e => {
 
 function apply_filters(){
     let filter_data_chk = get_filters(true)
-    if(filter_data_chk.search !== "" || filter_data_chk.tags !== []) {
+    if(filter_data_chk.search !== "" || filter_data_chk.tags.length !== 0) {
         filters = true
         filtered = false
         load_plugins()
+    }else{
+        if(filtered) {
+            reset_filters()
+        }
     }
 }
 
@@ -99,8 +103,13 @@ function get_filters(only=false){
 
 function filter_by_tag(btn, tag){
     try {
-        tag_form.querySelector(`input[name='${tag}']`).checked = true
-        btn.classList.add("bg-success")
+        if(btn.classList.contains("badge-success")){
+            tag_form.querySelector(`input[name='${tag}']`).checked = false
+            btn.classList.replace("badge-success", "badge-info")
+        }else {
+            tag_form.querySelector(`input[name='${tag}']`).checked = true
+            btn.classList.add("bg-success")
+        }
         apply_filters()
     }catch (_){
         btn.classList.add("bg-danger")
@@ -112,8 +121,12 @@ function load_plugins(){
         let active = get_filters(true).tags
         let tag_list = tags.split(",")
         let output = ""
+        function test(tag){
+            for (let ac of active){if (tag.includes(ac)) {return true}}
+            return false
+        }
         for (let tag of tag_list){
-            output += `<a class="btn badge ${active.includes(tag) ? "badge-success" : "badge-info"} m-1" onclick="filter_by_tag(this, '${tag}')">${tag}</a>`
+            output += `<a class="btn badge ${test(tag) ? "badge-success" : "badge-info"} m-1" onclick="filter_by_tag(this, '${tag}')">${tag}</a>`
         }
         return output
     }
@@ -152,7 +165,7 @@ function load_plugins(){
                         .replaceAll("plugin_tags", makeTagList(plugin.tags))
                     wrapper.appendChild(elem)
 
-                    document.querySelector(`img[alt='${plugin.plugin_name}']`).addEventListener("load", e => {
+                    document.querySelector(`img[data-loc='${plugin.uuid}']`).addEventListener("load", e => {
                         e.target.parentNode.removeChild(
                             e.target.parentNode.querySelector(".spinner")
                         )

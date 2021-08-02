@@ -68,7 +68,7 @@ if (plugins_tab){
 const plugin_card_template = `
     <div class="card">
         <div class="card-body">
-            <img src="/plugins?icon=plugin_uuid" alt="plugin_name">
+            <img src="/plugins?icon=plugin_uuid" alt="plugin_name" data-loc="plugin_uuid">
             <div class="spinner">
                 <div class="spinner-border"></div>
             </div>
@@ -84,7 +84,7 @@ const plugin_card_template = `
 const extension_card_template = `
     <div class="card">
         <div class="card-body">
-            <img src="/extensions?picture=extension_uuid" alt="extension_name">
+            <img src="/extensions?picture=extension_uuid" alt="extension_name" data-loc="extension_uuid">
             <div class="spinner">
                 <div class="spinner-border"></div>
             </div>
@@ -116,7 +116,7 @@ function load_plugins(){
                         .replaceAll("plugin_short_description", plugin.short_description)
                         .replaceAll("plugin_uuid", plugin.uuid)
                     plugins_tab.appendChild(elem)
-                    document.querySelector(`img[alt='${plugin.plugin_name}']`).addEventListener("load", e => {
+                    document.querySelector(`img[data-loc='${plugin.uuid}']`).addEventListener("load", e => {
                         e.target.parentNode.removeChild(
                             e.target.parentNode.querySelector(".spinner")
                         )
@@ -156,7 +156,7 @@ function load_extensions(){
                         .replaceAll("extension_short_description", extension.short_description)
                         .replaceAll("extension_uuid", extension.uuid)
                     extensions_tab.appendChild(elem)
-                    document.querySelector(`img[alt='${extension.module_name}']`).addEventListener("load", e => {
+                    document.querySelector(`img[data-loc='${extension.uuid}']`).addEventListener("load", e => {
                         e.target.parentNode.removeChild(
                             e.target.parentNode.querySelector(".spinner")
                         )

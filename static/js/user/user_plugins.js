@@ -22,7 +22,7 @@ const plugin_template = `
         <div class="spinner">
             <div class="spinner-border"></div>
         </div>
-        <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name">
+        <img class="mr-3" src="/plugins?icon=plugin_uuid" alt="plugin_name" data-loc="plugin_uuid">
     </a>
     <div class="media-body pt-1">
         <span class="font-weight-bold"><a href="/plugins/plugin_uuid">plugin_name</a></span><br>
@@ -79,7 +79,7 @@ function load_plugins(){
                         .replaceAll("plugin_tags", makeTagList(plugin.tags))
                     wrapper.appendChild(elem)
 
-                    document.querySelector(`img[alt='${plugin.plugin_name}']`).addEventListener("load", e => {
+                    document.querySelector(`img[data-loc='${plugin.uuid}']`).addEventListener("load", e => {
                         e.target.parentNode.removeChild(
                             e.target.parentNode.querySelector(".spinner")
                         )
