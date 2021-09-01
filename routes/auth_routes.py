@@ -45,6 +45,7 @@ def login():
 
         username = request.form.get("username")
         password = request.form.get("password")
+        remember = request.form.get("remember")
         state = user_repo.check_user_password(username, password)
 
         if state:
@@ -53,6 +54,7 @@ def login():
             session["logged_in"] = True
             session["username"] = username
             session[username] = user_repo.get_password_hash(username)
+            session.permanent = remember == "on"
             if not user_repo.get_user_query_object(username).get_suspended():
                 return redirect(redirection)
             return render_template("suspended.html")

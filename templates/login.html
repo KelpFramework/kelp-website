@@ -30,7 +30,12 @@
                 <form method="POST" action="/login?goto_confirm={{ redirect }}" class="card-body">
                     <input type="text" class="form-control mb-1" placeholder="Username" name="username" pattern="[A-Za-z0-9_-]{4,}" title="at least 4 characters: A-Z a-z _ -" required>
                     <input type="password" class="form-control" placeholder="Password" name="password" pattern="[A-Za-z0-9-_+%€/]{6,}" title="at least 6 characters A-Z a-z 0-9 - _ + % € /" required>
-                    <br> <span class="text-danger" id="error">{{ error }}</span> <br>
+                    <br> <span class="text-danger" id="error">{{ error }}</span>
+                    <div class="form-check ml-3">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="remember">Keep me signed in
+                        </label>
+                    </div><br>
                     <button type="submit" class="btn btn-lg btn-primary w-100" >Login</button>
                     <div class="text-center mt-3">
                         <span>Or <a class="underlineHover" href="/register">sign up</a> for a new account</span>

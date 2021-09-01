@@ -2,6 +2,7 @@ from flask import *
 
 from utils.stop_codes import StopCodes
 from database.global_temp_db import TempDatabase
+from datetime import timedelta
 import configuration
 import os
 
@@ -17,6 +18,7 @@ temp_db = TempDatabase(configuration.temp_db_template)
 app = Flask(__name__)
 app.secret_key = configuration.secret_key
 app.config["MAX_CONTENT_LENGTH"] = configuration.max_upload_size * 1024 * 1024
+app.permanent_session_lifetime = timedelta(days=365)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
