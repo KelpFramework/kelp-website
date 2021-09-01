@@ -57,7 +57,7 @@ One last thing before you start! Be sure to read the [contribution guidelines](.
 |Extension Proposition |❌         |if requested    |❌   |Users are able to propose Extensions which will be tested and maybe released.  |
 |Plugin Voting         |❌         |(no date)       |❌   |Users can vote if they like a plugin or not. This will affect listing and users will be able to sort by such parameters. |
 |Markdown Overhaul     |✅         |✅              |done  |Better markdown styles on all pages which use it. |
-|Remember Logins       |❌         |if requested    |❌   |Add options for remembering user login |
+|Remember Logins       |✅         |✅              |done  |Add options for remembering user login |
 
 more features will be added here if requested
 
